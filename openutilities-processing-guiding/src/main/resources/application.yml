@@ -1,0 +1,12 @@
+application:
+  name: openutilities-processing-guiding
+spark:
+  cassandra:
+    connection:
+      host: @spark.cassandra.connection.host@
+      port: @spark.cassandra.connection.port@
+  executor:
+    memory: 2g
+kafka:
+  bootstrap:
+    servers: @kafka.bootstrap.servers@

@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.openutilities.rm.am</groupId>
+    <artifactId>openutilities-rm-am</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>org.openutilities.rm.pom</groupId>
+        <artifactId>openutilities-rm-pom</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../openutilities-rm-pom</relativePath>
+    </parent>
+
+    <name>openutilities-rm-am</name>
+    <url>https://github.com/danielgutc/open-utilities</url>
+
+    <properties>
+        <asciidoctor.maven.plugin.version>1.5.3</asciidoctor.maven.plugin.version>
+        <spring.restdocs.asciidoctor.version>1.2.1.RELEASE</spring.restdocs.asciidoctor.version>
+    </properties>
+
+    <dependencies/>
+
+    <build>
+        <plugins>
+            <!-- Contract-first integration with Swagger
+            <plugin>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>2.2.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>src/main/api/api.yaml</inputSpec>
+                            <language>spring</language>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelTests>false</generateModelTests>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                            <generateSupportingFiles>false</generateSupportingFiles>
+                            <output>.</output>
+                            <skipOverwrite>true</skipOverwrite>
+                            <configOptions>
+                                <sourceFolder>src/main/java</sourceFolder>
+                                <dateLibrary>java8</dateLibrary>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+            <!-- TODO finish service-first integration with Swagger: https://github.com/kongchen/swagger-maven-plugin/issues/538 -->
+            <!-- Service-first integration with Swagger
+            <plugin>
+                <groupId>com.github.kongchen</groupId>
+                <artifactId>swagger-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <apiSources>
+                        <apiSource>
+                            <springmvc>true</springmvc>
+                            <locations>org.dgc.sandbox.swagger2</locations>
+                            <info>
+                                <title>Test</title>
+                                <version>v1</version>
+                            </info>
+                        </apiSource>
+                    </apiSources>
+                    <skipSwaggerGeneration>false</skipSwaggerGeneration>
+                    <swaggerDirectory>generated/swagger-ui</swaggerDirectory>
+                    <attachSwaggerArtifact>true</attachSwaggerArtifact>
+                    <swaggerFileName>api</swaggerFileName>
+                    <outputFormats>yaml</outputFormats>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            -->
+        </plugins>
+    </build>
+
+</project>

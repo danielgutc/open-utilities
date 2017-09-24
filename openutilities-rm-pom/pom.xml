@@ -1,0 +1,166 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.openutilities.rm.pom</groupId>
+    <artifactId>openutilities-rm-pom</artifactId>
+    <version>0.0.1-SNAPSHOT</version> <!-- TODO Add versioning mechanism -->
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.openutilities</groupId>
+        <artifactId>openutilities</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <name>openutilities-rm-pom</name>
+    <url>https://github.com/danielgutc/open-utilities</url>
+
+    <properties>
+        <docker.image.prefix></docker.image.prefix>
+        <h2.console.enabled>false</h2.console.enabled>
+        <spring.hateoas.version>0.23.0.RELEASE</spring.hateoas.version>
+        <spring.restdocs.mockmvc.version>1.2.1.RELEASE</spring.restdocs.mockmvc.version>
+        <docker.plugin.version>0.4.13</docker.plugin.version>
+        <docker.maven.plugin.version>0.4.11</docker.maven.plugin.version>
+
+        <logback.version>1.0.13</logback.version>
+        <slf4j.api.version>1.7.21</slf4j.api.version>
+    </properties>
+
+    <modules>
+        <module>../openutilities-rm-am</module>
+    </modules>
+
+    <dependencies>
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <!-- Add HATEOAS to REST services -->
+        <dependency>
+            <groupId>org.springframework.hateoas</groupId>
+            <artifactId>spring-hateoas</artifactId>
+            <version>${spring.hateoas.version}</version>
+        </dependency>
+
+        <!-- Document REST services are yet not supporting Spring 5 webflux
+        <dependency>
+            <groupId>org.springframework.restdocs</groupId>
+            <artifactId>spring-restdocs-mockmvc</artifactId>
+            <version>${spring.restdocs.mockmvc.version}</version>
+        </dependency>
+        -->
+
+        <!-- TODO Add dependencies for cloud patterns not covered by marathon:
+            Distributed/versioned configuration
+            Service registration and discovery
+            Routing
+            Service-to-service calls
+            Load balancing (covered by marathon?)
+            Circuit Breakers (covered by marathon?)
+            Leadership election and cluster state
+            Distributed messaging
+            -->
+
+        <!-- Persistence -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Comment H2 when using PostgreSQL -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope> <!-- TODO Change scope to test when PostgreSQL is configured -->
+        </dependency>
+
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+        <!-- Persistence: PostgreSQL
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.3-1102-jdbc41</version>
+        </dependency>
+
+         <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+         End of PostgreSQL area -->
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/docker</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <!-- Spring boot -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- Create Docker image and add to repository -->
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.maven.plugin.version}</version>
+                <configuration>
+                    <imageName>${project.artifactId}</imageName>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.0.0.M3</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

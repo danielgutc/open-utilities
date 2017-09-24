@@ -1,0 +1,7 @@
+server:
+  port: @components.rm.am.server.port@
+
+spring:
+  h2:
+    console:
+      enabled: @h2.console.enabled@
