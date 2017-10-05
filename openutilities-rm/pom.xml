@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.openutilities.rm.pom</groupId>
-    <artifactId>openutilities-rm-pom</artifactId>
+    <artifactId>openutilities-rm</artifactId>
     <version>0.0.1-SNAPSHOT</version> <!-- TODO Add versioning mechanism -->
     <packaging>pom</packaging>
 
@@ -30,7 +30,7 @@
     </properties>
 
     <modules>
-        <module>../openutilities-rm-am</module>
+        <module>openutilities-rm-am</module>
     </modules>
 
     <dependencies>

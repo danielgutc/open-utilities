@@ -9,9 +9,9 @@
 
     <parent>
         <groupId>org.openutilities.rm.pom</groupId>
-        <artifactId>openutilities-rm-pom</artifactId>
+        <artifactId>openutilities-rm</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../openutilities-rm-pom</relativePath>
+        <relativePath>../</relativePath>
     </parent>
 
     <name>openutilities-rm-am</name>

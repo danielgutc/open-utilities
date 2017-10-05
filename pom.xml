@@ -26,9 +26,9 @@
     </properties>
 
     <modules>
-        <module>openutilities-processing-pom</module>
-        <module>openutilities-rm-pom</module>
-        <module>openutilities-integration-pom</module>
+        <module>openutilities-processing</module>
+        <module>openutilities-rm</module>
+        <module>openutilities-integration</module>
     </modules>
 
     <dependencies>
@@ -141,11 +141,22 @@
     <!-- Use Infrastructure as Code to define the whole infrastructure -->
     <profiles>
         <profile>
+            <id>local</id>
+            <properties>
+                <spark.cassandra.connection.host>spark-vm-local</spark.cassandra.connection.host>
+                <spark.cassandra.connection.port>9042</spark.cassandra.connection.port>
+                <kafka.bootstrap.servers>localhost:9092</kafka.bootstrap.servers>
+                <docker.image.prefix>docker-host:2375</docker.image.prefix>
+                <components.rm.am.server.port>9001</components.rm.am.server.port>
+                <h2.console.enabled>true</h2.console.enabled>
+            </properties>
+        </profile>
+        <profile>
             <id>dev</id>
             <properties>
                 <spark.cassandra.connection.host>spark-vm</spark.cassandra.connection.host>
                 <spark.cassandra.connection.port>9042</spark.cassandra.connection.port>
-                <kafka.bootstrap.servers>localhost:9092</kafka.bootstrap.servers>
+                <kafka.bootstrap.servers>spark-vm:9092</kafka.bootstrap.servers>
                 <docker.image.prefix>docker-host:2375</docker.image.prefix>
                 <components.rm.am.server.port>9001</components.rm.am.server.port>
                 <h2.console.enabled>true</h2.console.enabled>

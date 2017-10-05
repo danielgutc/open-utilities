@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.openutilities.proccessing.pom</groupId>
-    <artifactId>openutilities-processing-pom</artifactId>
+    <artifactId>openutilities-processing</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -28,8 +28,8 @@
     </properties>
 
     <modules>
-        <module>../openutilities-processing-core</module>
-        <module>../openutilities-processing-guiding</module>
+        <module>openutilities-processing-core</module>
+        <module>openutilities-processing-guiding</module>
     </modules>
 
     <dependencies>
