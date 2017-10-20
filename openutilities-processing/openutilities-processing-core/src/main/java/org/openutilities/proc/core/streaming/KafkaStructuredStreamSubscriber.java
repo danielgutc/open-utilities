@@ -10,12 +10,14 @@ import org.openutilities.proc.core.session.SparkSessionFactory;
  */
 public class KafkaStructuredStreamSubscriber
 {
+    private KafkaStructuredStreamSubscriber(){}
+
     /**
      * Subscribes to a Kafka topic.
      * @param topicName is the topic to subscribe
      * @return a {@Link Dataset} representing the stream
      */
-    Dataset<Row> subscribe(String topicName)
+    public static Dataset<Row> subscribe(String topicName)
     {
         return SparkSessionFactory.getSparkSession()
                 .readStream()

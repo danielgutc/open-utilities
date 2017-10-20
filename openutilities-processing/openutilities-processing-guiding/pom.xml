@@ -14,7 +14,14 @@
         <relativePath>../</relativePath>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.openutilities.proccessing.core</groupId>
+            <artifactId>openutilities-processing-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
-    <name>openutilities-processing-core</name>
+    <name>openutilities-processing-guiding</name>
     <url>https://github.com/danielgutc/open-utilities</url>
 </project>

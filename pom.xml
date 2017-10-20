@@ -109,6 +109,7 @@
                             <encoding>${project.build.sourceEncoding}</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>true</failsOnError>
+                            <skip>false</skip>
                         </configuration>
                         <goals>
                             <goal>check</goal>
@@ -145,9 +146,13 @@
             <properties>
                 <spark.cassandra.connection.host>spark-vm-local</spark.cassandra.connection.host>
                 <spark.cassandra.connection.port>9042</spark.cassandra.connection.port>
-                <kafka.bootstrap.servers>localhost:9092</kafka.bootstrap.servers>
+                <kafka.hostname>localhost</kafka.hostname>
+                <kafka.port>9092</kafka.port>
+                <kafka.bootstrap.servers>${kafka.hostname}:${kafka.port}</kafka.bootstrap.servers>
                 <docker.image.prefix>docker-host:2375</docker.image.prefix>
                 <components.rm.am.server.port>9001</components.rm.am.server.port>
+                <components.integration.collection.csv.port>9002</components.integration.collection.csv.port>
+                <components.integration.collection.csv.hotfolder>c:\Temp\hotfolder</components.integration.collection.csv.hotfolder>
                 <h2.console.enabled>true</h2.console.enabled>
             </properties>
         </profile>
@@ -156,9 +161,13 @@
             <properties>
                 <spark.cassandra.connection.host>spark-vm</spark.cassandra.connection.host>
                 <spark.cassandra.connection.port>9042</spark.cassandra.connection.port>
-                <kafka.bootstrap.servers>spark-vm:9092</kafka.bootstrap.servers>
+                <kafka.hostname>spark-vm</kafka.hostname>
+                <kafka.port>9092</kafka.port>
+                <kafka.bootstrap.servers>${kafka.hostname}:${kafka.port}</kafka.bootstrap.servers>
                 <docker.image.prefix>docker-host:2375</docker.image.prefix>
                 <components.rm.am.server.port>9001</components.rm.am.server.port>
+                <components.integration.collection.csv.port>9002</components.integration.collection.csv.port>
+                <components.integration.collection.csv.hotfolder>c:\Temp\hotfolder</components.integration.collection.csv.hotfolder>
                 <h2.console.enabled>true</h2.console.enabled>
             </properties>
         </profile>

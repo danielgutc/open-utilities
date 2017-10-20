@@ -5,10 +5,13 @@
     <groupId>org.openutilities.integration</groupId>
     <artifactId>openutilities-integration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>openutilities-integration-collection-csv</module>
+    </modules>
     <packaging>pom</packaging>
 
     <name>openutilities-integration-pom</name>
-    <url>http://maven.apache.org</url>
+    <url>https://github.com/danielgutc/open-utilities</url>
 
     <parent>
         <groupId>org.openutilities</groupId>

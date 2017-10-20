@@ -1,0 +1,16 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>openutilities-integration</artifactId>
+        <groupId>org.openutilities.integration</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.openutilities.integration.collection.csv</groupId>
+    <artifactId>openutilities-integration-collection-csv</artifactId>
+    <packaging>jar</packaging>
+
+    <name>openutilities-integration-collection-csv</name>
+    <url>https://github.com/danielgutc/open-utilities</url>
+</project>

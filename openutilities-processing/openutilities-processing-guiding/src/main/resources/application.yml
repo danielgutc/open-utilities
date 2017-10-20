@@ -10,3 +10,5 @@ spark:
 kafka:
   bootstrap:
     servers: @kafka.bootstrap.servers@
+  topic:
+    name: mdm-readings-csv-input

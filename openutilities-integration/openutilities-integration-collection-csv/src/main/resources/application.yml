@@ -1,0 +1,18 @@
+hotfolder:
+  path: @components.integration.collection.csv.hotfolder@
+spring:
+    application:
+        name: ou-integration-collection-csv
+    cloud:
+        stream:
+            bindings:
+                output:
+                    destination: mdm-readings-csv-input
+                    producer:
+                        headerMode: raw
+            kafka:
+                binder:
+                    brokers: @kafka.hostname@
+                    zkNodes: @kafka.hostname@
+server:
+    port: @components.integration.collection.csv.port@

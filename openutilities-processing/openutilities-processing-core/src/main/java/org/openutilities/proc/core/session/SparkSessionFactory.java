@@ -18,7 +18,7 @@ public class SparkSessionFactory
                 .builder()
                 .appName(Configuration.getPropertyAsString("application.name"))
                 .config("spark.cassandra.connection.host", Configuration.getPropertyAsString("spark.cassandra.connection.host"))
-                .config("spark.cassandra.connection.port", Configuration.getPropertyAsString("spark.cassandra.connection.port"))
+                .config("spark.cassandra.connection.port", Configuration.getPropertyAsLong("spark.cassandra.connection.port"))
                 .config("spark.executor.memory", Configuration.getPropertyAsString("spark.executor.memory"))
                 .master("local[*]")
                 .getOrCreate();

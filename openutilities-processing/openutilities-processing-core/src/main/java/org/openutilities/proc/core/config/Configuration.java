@@ -18,11 +18,12 @@ public class Configuration
 {
     private static Logger logger = LoggerFactory.getLogger(Configuration.class);
 
-    private static HashMap<String, Object> properties;
+    private static HashMap<String, String> properties;
 
     static
     {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+        properties = new HashMap<>();
 
         try (InputStream is = Configuration.class.getResourceAsStream("/application.yml"))
         {
@@ -42,12 +43,12 @@ public class Configuration
      * @param value represents the map value to flat
      * @param result stores the map with flat properties
      */
-    private static void flatProperties(String propertyName, Object value, Map<String, Object> result)
+    private static void flatProperties(String propertyName, Object value, Map<String, String> result)
     {
         if (value instanceof HashMap)
         {
-            Map<String, Object> valueMap = (Map<String, Object>) value;
-            for (Map.Entry<String, Object> entry: valueMap.entrySet())
+            Map<String, String> valueMap = (Map<String, String>) value;
+            for (Map.Entry<String, String> entry: valueMap.entrySet())
             {
                 String propName = StringUtils.isEmpty(propertyName) ? entry.getKey() : propertyName + "." + entry.getKey();
                 flatProperties(propName, entry.getValue(), result);
@@ -55,7 +56,7 @@ public class Configuration
         }
         else
         {
-            result.put(propertyName, value);
+            result.put(propertyName, String.valueOf(value));
         }
     }
 
@@ -67,6 +68,16 @@ public class Configuration
     public static <T> T getTypedProperty(String propertyName)
     {
         return (T) properties.get(propertyName);
+    }
+
+    public static <T> long getPropertyAsLong(String propertyName)
+    {
+        return Long.parseLong(getPropertyAsString(propertyName));
+    }
+
+    public static <T> int getPropertyAsInt(String propertyName)
+    {
+        return Integer.parseInt(getPropertyAsString(propertyName));
     }
 
     public static String getPropertyAsString(String propertyName)
