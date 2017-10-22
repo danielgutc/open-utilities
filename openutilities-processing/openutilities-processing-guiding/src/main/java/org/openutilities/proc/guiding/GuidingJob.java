@@ -14,27 +14,32 @@ public class GuidingJob
 {
     public static final String KAFKA_TOPIC_NAME = "kafka.topic.name";
 
+    /**
+     * Main Spark job entry.
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception
     {
         GuidingJob guidingJob = new GuidingJob();
-        String topic = args.length > 0? args[0] : Configuration.getPropertyAsString(KAFKA_TOPIC_NAME);
+        String topic = args.length > 0 ? args[0] : Configuration.getPropertyAsString(KAFKA_TOPIC_NAME);
         guidingJob.startGuiding(topic);
     }
 
     /**
      * Start streaming Kafka messages and guide the readings.
      * @param topic name
-     * @throws Exception
+     * @throws Exception when any
      */
     private void startGuiding(String topic) throws Exception
     {
         Dataset<Row> readingsFileDs = KafkaStructuredStreamSubscriber.subscribe(topic);
 
-        Dataset<String> readingsCDR = readingsFileDs.selectExpr("CAST(value AS STRING)")
+        Dataset<String> readingsCdr = readingsFileDs.selectExpr("CAST(value AS STRING)")
                 .as(Encoders.STRING())
                 .flatMap((FlatMapFunction<String, String>) x -> Arrays.asList(x.split("\n")).iterator(), Encoders.STRING());
 
-        StreamingQuery sq = readingsCDR.writeStream()
+        StreamingQuery sq = readingsCdr.writeStream()
                 //.outputMode("complete")
                 .format("console")
                 .start();
