@@ -17,6 +17,7 @@ public class Reading
     private String meterSerial;
     private Long meterId;
     private String meterChannel;
+    private Long channelId;
     private Long typeId;
     private BigDecimal value;
     private ZonedDateTime date;

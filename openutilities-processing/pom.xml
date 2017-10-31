@@ -21,7 +21,7 @@
         <spark.version>2.1.1</spark.version>
         <spark.scala.binary.version>2.11</spark.scala.binary.version>
         <mockito.all.version>2.0.2-beta</mockito.all.version>
-        <spark.cassandra.connector.version>2.0.2</spark.cassandra.connector.version>
+        <spark.cassandra.connector.version>2.0.5</spark.cassandra.connector.version>
         <jackson.dataformat.yaml.version>2.3.0</jackson.dataformat.yaml.version>
         <jackson.databind.version>2.2.3</jackson.databind.version>
         <commons.lang3.version>3.4</commons.lang3.version>
