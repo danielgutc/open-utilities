@@ -7,6 +7,9 @@ spark:
       port: @spark.cassandra.connection.port@
   executor:
     memory: 2g
+  streaming:
+    batch:
+      duration: 5000
 kafka:
   bootstrap:
     servers: @kafka.bootstrap.servers@

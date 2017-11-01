@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.Date;
 
 @Data
 @Builder
@@ -20,6 +21,6 @@ public class Reading
     private Long channelId;
     private Long typeId;
     private BigDecimal value;
-    private ZonedDateTime date;
+    private Date date;
     private Long usagePointId;
 }

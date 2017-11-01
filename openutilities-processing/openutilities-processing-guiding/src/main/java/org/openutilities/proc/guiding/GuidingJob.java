@@ -22,10 +22,16 @@ import org.openutilities.proc.core.config.Configuration;
 import org.openutilities.proc.core.domain.Reading;
 
 import com.datastax.spark.connector.streaming.*;
+import org.openutilities.proc.core.streaming.KafkaJavaDirectStreamBuilder;
+
 import static com.datastax.spark.connector.japi.CassandraJavaUtil.*;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.ZonedDateTime;
+import java.time.temporal.TemporalField;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -47,126 +53,40 @@ public class GuidingJob
     public static void main(String[] args) throws Exception
     {
         GuidingJob guidingJob = new GuidingJob();
-        String topic = args.length > 0 ? args[0] : Configuration.getPropertyAsString(KAFKA_TOPIC_NAME);
-        guidingJob.startGuiding(topic);
+        //String topic = args.length > 0 ? args[0] : Configuration.getPropertyAsString(KAFKA_TOPIC_NAME);
+        guidingJob.startGuiding();
     }
 
     /**
      * Start streaming Kafka messages and guide the readings.
      *
-     * @param topic name
      * @throws Exception when any
      */
-    private void startGuiding(String topic) throws Exception
+    private void startGuiding() throws Exception
     {
-        SparkConf conf = new SparkConf()
-                .setAppName("mdm-readings-syntactic-validation")
-                .set("spark.cassandra.connection.host", "spark-vm")
-                .set("spark.cassandra.connection.port", "9042")
-                .setMaster("local[*]");
-
-        JavaStreamingContext jsc = new JavaStreamingContext(conf, new Duration(1000));
-
-        // Connect to Kafka
-        Map<String, Object> kafkaParams = new HashMap<>();
-        kafkaParams.put("bootstrap.servers", "192.168.247.100:9092");
-        kafkaParams.put("key.deserializer", StringDeserializer.class);
-        kafkaParams.put("value.deserializer", StringDeserializer.class);
-        kafkaParams.put("group.id", "group_1");
-        kafkaParams.put("auto.offset.reset", "latest");
-        kafkaParams.put("enable.auto.commit", true);
-
-        Collection<String> topics = Arrays.asList(topic);
-
-        JavaInputDStream<ConsumerRecord<String, String>> stream =
-                KafkaUtils.createDirectStream(
-                        jsc,
-                        LocationStrategies.PreferConsistent(),
-                        ConsumerStrategies.<String, String>Subscribe(topics, kafkaParams)
-                );
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy'T'HH:mm:ss'Z'");
+        JavaInputDStream<ConsumerRecord<String, String>> stream = KafkaJavaDirectStreamBuilder.createDirectStream();
 
         JavaDStream<Reading> readingJavaDStream =
-                stream.map(cr -> cr.value())
+                stream.map(r -> r.value())
+                        .flatMap((FlatMapFunction<String, String>) l -> Arrays.asList(l.split("\n")).iterator())
                         .map(s -> {
-                            String[] values = s.split(",");
-                            return Reading.builder().meterSerial(values[0]).meterChannel(values[2]).date(ZonedDateTime.now()).value(new BigDecimal(values[6])).build();
+                            String[] fields = s.split(",");
+                            return Reading.builder().meterSerial(fields[0]).meterChannel(fields[1]).date(dateFormat.parse(fields[3])).value(new BigDecimal(fields[2])).build();
                         });
+
+        readingJavaDStream.count().print();
 
         CassandraStreamingJavaUtil.javaFunctions(readingJavaDStream)
                 .writerBuilder("mdm", "readings", mapToRow(Reading.class,
                         Pair.of("meterChannel", "channel"),
-                        Pair.of("date","read_dt"),
+                        Pair.of("date", "read_dt"),
                         Pair.of("channelId", "channel_id"),
                         Pair.of("typeId", "reading_type_id"))
                 ).saveToCassandra();
 
-        jsc.start();
-        jsc.awaitTermination();
-
-        //stream.foreachRDD(rdd -> javaFunctions(rdd).writerBuilder("mdm", "readings", mapRowTo(Reading.class)).saveToCassandra();
-        //stream.map(r -> r).dstream().saveToCassandra("mdm", "readings");
-
-/*        Dataset<Row> messages = KafkaStructuredStreamSubscriber.subscribe(topic);
-
-        Dataset<String> readings = messages.selectExpr("CAST(value AS STRING)")
-                .as(Encoders.STRING())
-                .flatMap((FlatMapFunction<String, String>) x ->
-                        Arrays.asList(x.split("\n")).iterator(), Encoders.STRING());
-
-
-
-        StreamingQuery sq = readings
-                .writeStream()
-                .format("org.apache.spark.sql.cassandra")
-                .options(new HashMap<String, String>()
-                {
-                    {
-                        put("keyspace", "mdm");
-                        put("table", "readings");
-                    }
-                }).start();
-        sq.awaitTermination();*/
-        
-/*
-                .map((MapFunction<String, Reading>) l ->
-                {
-
-                    String[] readingSplit = l.split(",");
-                    return Reading.builder()
-                            .meterSerial(readingSplit[0])
-                            .meterChannel(readingSplit[1])
-                            .build();
-                }, Encoders.bean(Reading.class));*/
-
-        /*StreamingQuery sq = readings.writeStream()
-                //.outputMode("complete")
-                .format("console")
-                .start();
-        sq.awaitTermination();*/
-
-    }
-
-    /**
-     * Parse readings message.
-     *
-     * @param stream representing the message
-     * @return the Dataset representing the readings
-     */
-    private Dataset<String> parseReadings(Dataset<Row> stream)
-    {
-        return stream.selectExpr("CAST(value AS STRING)")
-                .as(Encoders.STRING())
-                .flatMap((FlatMapFunction<String, String>) x ->
-                        Arrays.asList(x.split("\n")).iterator(), Encoders.STRING())
-                .map((MapFunction<String, String>) l ->
-                {
-                    String[] readingSplit = l.split(",");
-                    return Reading.builder()
-                            .meterSerial(readingSplit[0])
-                            .meterChannel(readingSplit[1])
-                            .build().toString();
-                }, Encoders.STRING());
-
+        readingJavaDStream.context().start();
+        readingJavaDStream.context().awaitTermination();
     }
 
     /**
