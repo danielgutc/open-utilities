@@ -1,18 +1,8 @@
 package org.openutilities.proc.core.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
 import java.util.Date;
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Reading
 {
     private String meterSerial;
@@ -23,4 +13,87 @@ public class Reading
     private BigDecimal value;
     private Date date;
     private Long usagePointId;
+
+    //<editor-fold desc="Boilerplate code">
+    public String getMeterSerial()
+    {
+        return meterSerial;
+    }
+
+    public void setMeterSerial(String meterSerial)
+    {
+        this.meterSerial = meterSerial;
+    }
+
+    public Long getMeterId()
+    {
+        return meterId;
+    }
+
+    public void setMeterId(Long meterId)
+    {
+        this.meterId = meterId;
+    }
+
+    public String getMeterChannel()
+    {
+        return meterChannel;
+    }
+
+    public void setMeterChannel(String meterChannel)
+    {
+        this.meterChannel = meterChannel;
+    }
+
+    public Long getChannelId()
+    {
+        return channelId;
+    }
+
+    public void setChannelId(Long channelId)
+    {
+        this.channelId = channelId;
+    }
+
+    public Long getTypeId()
+    {
+        return typeId;
+    }
+
+    public void setTypeId(Long typeId)
+    {
+        this.typeId = typeId;
+    }
+
+    public BigDecimal getValue()
+    {
+        return value;
+    }
+
+    public void setValue(BigDecimal value)
+    {
+        this.value = value;
+    }
+
+    public Date getDate()
+    {
+        return date;
+    }
+
+    public void setDate(Date date)
+    {
+        this.date = date;
+    }
+
+    public Long getUsagePointId()
+    {
+        return usagePointId;
+    }
+
+    public void setUsagePointId(Long usagePointId)
+    {
+        this.usagePointId = usagePointId;
+    }
+    //</editor-fold>
+
 }

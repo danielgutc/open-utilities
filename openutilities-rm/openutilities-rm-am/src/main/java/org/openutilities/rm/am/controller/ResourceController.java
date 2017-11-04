@@ -31,6 +31,6 @@ public class ResourceController
     {
         logger.debug("Requested resource code '%s'", code);
 
-        return this.resourceService.getResourceByCode(code).orElse(Resource.builder().build());
+        return resourceService.getResource(code);
     }
 }

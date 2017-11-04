@@ -3,6 +3,7 @@ package org.openutilities.rm.am.service;
 import java.util.Optional;
 
 import org.openutilities.rm.am.domain.Resource;
+import org.openutilities.rm.am.domain.UsagePoint;
 import org.openutilities.rm.am.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class ResourceService
      * @param code is the unique code
      * @return the resource
      */
-    public Optional<Resource> getResourceByCode(final String code)
+    public Resource getResource(final String code)
     {
         return resourceRepository.findByCode(code);
     }

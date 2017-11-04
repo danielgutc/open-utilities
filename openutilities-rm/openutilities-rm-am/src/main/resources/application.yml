@@ -5,3 +5,7 @@ spring:
   h2:
     console:
       enabled: @h2.console.enabled@
+
+application:
+  properties:
+    debug: true

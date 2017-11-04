@@ -21,5 +21,5 @@ public interface ResourceRepository extends CrudRepository<Resource, Long>
      * @param code is the resource unique code
      * @return the resource
      */
-    Optional<Resource> findByCode(final String code);
+    Resource findByCode(final String code);
 }

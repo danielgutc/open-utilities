@@ -22,6 +22,7 @@ import org.openutilities.proc.core.config.Configuration;
 import org.openutilities.proc.core.domain.Reading;
 
 import com.datastax.spark.connector.streaming.*;
+import org.openutilities.proc.core.domain.builder.ReadingBuilder;
 import org.openutilities.proc.core.streaming.KafkaJavaDirectStreamBuilder;
 
 import static com.datastax.spark.connector.japi.CassandraJavaUtil.*;
@@ -72,7 +73,7 @@ public class GuidingJob
                         .flatMap((FlatMapFunction<String, String>) l -> Arrays.asList(l.split("\n")).iterator())
                         .map(s -> {
                             String[] fields = s.split(",");
-                            return Reading.builder().meterSerial(fields[0]).meterChannel(fields[1]).date(dateFormat.parse(fields[3])).value(new BigDecimal(fields[2])).build();
+                            return ReadingBuilder.aReading().meterSerial(fields[0]).meterChannel(fields[1]).date(dateFormat.parse(fields[3])).value(new BigDecimal(fields[2])).build();
                         });
 
         readingJavaDStream.count().print();

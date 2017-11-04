@@ -1,0 +1,54 @@
+package org.openutilities.rm.am.domain.builder;
+
+import org.openutilities.rm.am.domain.Channel;
+
+public final class ChannelBuilder
+{
+    protected Long id;
+    protected Long typeId;
+    protected Long specId;
+    protected String code;
+
+    private ChannelBuilder()
+    {
+    }
+
+    public static ChannelBuilder aChannel()
+    {
+        return new ChannelBuilder();
+    }
+
+    public ChannelBuilder id(Long id)
+    {
+        this.id = id;
+        return this;
+    }
+
+    public ChannelBuilder typeId(Long typeId)
+    {
+        this.typeId = typeId;
+        return this;
+    }
+
+    public ChannelBuilder specId(Long specId)
+    {
+        this.specId = specId;
+        return this;
+    }
+
+    public ChannelBuilder code(String code)
+    {
+        this.code = code;
+        return this;
+    }
+
+    public Channel build()
+    {
+        Channel channel = new Channel();
+        channel.setId(id);
+        channel.setTypeId(typeId);
+        channel.setSpecId(specId);
+        channel.setCode(code);
+        return channel;
+    }
+}
