@@ -1,24 +1,17 @@
 package org.openutilities.rm.am.controller.unit;
 
-import com.sun.org.apache.regexp.internal.RE;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.openutilities.rm.am.controller.ResourceController;
 import org.openutilities.rm.am.domain.Resource;
-import org.openutilities.rm.am.domain.UsagePoint;
 import org.openutilities.rm.am.domain.builder.ResourceBuilder;
-import org.openutilities.rm.am.domain.builder.UsagePointBuilder;
 import org.openutilities.rm.am.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import reactor.core.publisher.Mono;
-
-import java.util.Optional;
-
 
 @RunWith(SpringRunner.class)
 @WebFluxTest(ResourceController.class)

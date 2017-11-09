@@ -57,7 +57,8 @@ public class FileCollector
             {
                 WatchKey watchKey = hotFolderWs.take();
 
-                if (watchKey != null) {
+                if (watchKey != null)
+                {
                     // Poll for file system events on the WatchKey
                     for (final WatchEvent<?> event : watchKey.pollEvents())
                     {

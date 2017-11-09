@@ -71,9 +71,14 @@ public class GuidingJob
         JavaDStream<Reading> readingJavaDStream =
                 stream.map(r -> r.value())
                         .flatMap((FlatMapFunction<String, String>) l -> Arrays.asList(l.split("\n")).iterator())
-                        .map(s -> {
+                        .map(s ->
+                        {
                             String[] fields = s.split(",");
-                            return ReadingBuilder.aReading().meterSerial(fields[0]).meterChannel(fields[1]).date(dateFormat.parse(fields[3])).value(new BigDecimal(fields[2])).build();
+                            return ReadingBuilder.aReading().meterSerial(fields[0])
+                                    .meterChannel(fields[1])
+                                    .date(dateFormat.parse(fields[3]))
+                                    .value(new BigDecimal(fields[2]))
+                                    .build();
                         });
 
         readingJavaDStream.count().print();
@@ -97,11 +102,11 @@ public class GuidingJob
      */
     private void guideReadings(Dataset<String> readings)
     {
-        // TODO
+        // TODO implement guiding logic.
     }
 
     /**
-     * Persists the readings in database
+     * Persists the readings in database.
      *
      * @param readings
      */

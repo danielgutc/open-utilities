@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Usage point repository
+ * Usage point repository.
  */
 @Repository
 public interface UsagePointRepository extends CrudRepository<UsagePoint, Long>
