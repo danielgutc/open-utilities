@@ -41,6 +41,10 @@ public final class UsagePointBuilder
         return this;
     }
 
+    /**
+     * Builds the usage point.
+     * @return
+     */
     public UsagePoint build()
     {
         UsagePoint usagePoint = new UsagePoint();

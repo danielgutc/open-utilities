@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class Resource implements Serializable
 {
     @Id
-    //@GeneratedValue
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
     @Column(name = "type_id", updatable = false, insertable = false)
     protected Long typeId;

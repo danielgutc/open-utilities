@@ -42,6 +42,10 @@ public final class ResourceBuilder
         return this;
     }
 
+    /**
+     * Builds the resource.
+     * @return
+     */
     public Resource build()
     {
         Resource resource = new Resource();

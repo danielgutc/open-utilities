@@ -35,6 +35,10 @@ public final class MeterBuilder
         return this;
     }
 
+    /**
+     * Builds the meter.
+     * @return
+     */
     public Meter build()
     {
         Meter meter = new Meter();

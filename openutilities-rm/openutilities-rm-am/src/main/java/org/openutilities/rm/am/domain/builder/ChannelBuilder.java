@@ -35,6 +35,10 @@ public final class ChannelBuilder
         return this;
     }
 
+    /**
+     * Builds the channel.
+     * @return
+     */
     public Channel build()
     {
         Channel channel = new Channel();

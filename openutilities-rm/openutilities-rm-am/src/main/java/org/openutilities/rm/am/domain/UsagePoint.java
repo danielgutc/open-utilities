@@ -8,17 +8,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents an usage point.
+ */
 @Entity(name = "UsagePoint")
 @DiscriminatorValue("1")
 public class UsagePoint extends Resource implements Serializable
 {
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.fromResource", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "fromResource", cascade = CascadeType.ALL)
     @Where(clause = "type_id = 1")
     private List<Relation> meters = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.fromResource", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @Cascade({org.hibernate.annotations.CascadeType.SAVE_UPDATE})
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "fromResource", cascade = CascadeType.ALL)
     @Where(clause = "type_id = 2")
     private List<Relation> channels = new ArrayList<>();
 

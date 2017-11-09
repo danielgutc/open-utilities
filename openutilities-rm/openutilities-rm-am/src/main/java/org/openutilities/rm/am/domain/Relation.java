@@ -3,31 +3,35 @@ package org.openutilities.rm.am.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Represents a temporal relation between 2 resources
+ */
 @Entity
 @Table(name = "relations")
-//@IdClass(RelationId.class)
-@AssociationOverrides({
-        @AssociationOverride(name ="pk.fromResource", joinColumns = @JoinColumn(name ="from_res_id")),
-        @AssociationOverride(name ="pk.toResource", joinColumns = @JoinColumn(name ="to_res_id"))
-})
+@IdClass(RelationId.class)
 public class Relation implements Serializable
 {
     public static final Long UP_TO_METER = 1L;
     public static final Long ANY_TO_CHANNEL = 2L;
 
-    @EmbeddedId
-    private RelationId pk = new RelationId();
-//    @Id
-//    @Column(name = "from_res_id")
-//    private Long fromResourceId;
+    @Id
+    @Column(name = "from_res_id")
+    private Long fromResourceId;
 
-//    @Id
-//    @Column(name = "to_res_id")
-//    private Long toResourceId;
+    @Id
+    @Column(name = "to_res_id")
+    private Long toResourceId;
 
     @Column(name = "type_id")
     private Long typeId;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(name = "from_res_id", referencedColumnName = "id")
+    private Resource fromResource;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn(name = "to_res_id", referencedColumnName = "id")
+    private Resource toResource;
 
     public Relation()
     {
@@ -35,16 +39,14 @@ public class Relation implements Serializable
 
     public Relation(Resource fromResource, Resource toResource, Long typeId)
     {
-        //this.fromResourceId = fromResourceId;
-        //this.toResourceId = toResourceId;
         this.typeId = typeId;
-        this.pk.setFromResource(fromResource);
-        this.pk.setToResource(toResource);
+        this.setFromResource(fromResource);
+        this.setToResource(toResource);
     }
 
     //<editor-fold desc="Getters/Setters">
 
-   /* public Long getTypeId()
+    public Long getTypeId()
     {
         return typeId;
     }
@@ -73,6 +75,6 @@ public class Relation implements Serializable
     {
         this.toResource = toResource;
     }
-*/
+
     //</editor-fold>
 }

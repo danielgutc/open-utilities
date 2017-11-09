@@ -5,10 +5,11 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+/**
+ * Represent a meter device.
+ */
 @Entity(name = "Meter")
 @DiscriminatorValue("2")
 public class Meter extends Resource implements Serializable
@@ -16,11 +17,11 @@ public class Meter extends Resource implements Serializable
     @Column(name = "serial_number")
     private String serialNumber;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.toResource")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "toResource", cascade = CascadeType.ALL)
     @Where(clause = "type_id = 1")
     private List<Relation> usagePoints = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.fromResource")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "fromResource", cascade = CascadeType.ALL)
     @Where(clause = "type_id = 2")
     private List<Relation> channels = new ArrayList<>();
 
