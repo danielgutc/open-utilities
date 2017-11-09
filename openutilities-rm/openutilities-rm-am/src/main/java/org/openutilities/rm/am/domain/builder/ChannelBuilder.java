@@ -5,7 +5,6 @@ import org.openutilities.rm.am.domain.Channel;
 public final class ChannelBuilder
 {
     protected Long id;
-    protected Long typeId;
     protected Long specId;
     protected String code;
 
@@ -21,12 +20,6 @@ public final class ChannelBuilder
     public ChannelBuilder id(Long id)
     {
         this.id = id;
-        return this;
-    }
-
-    public ChannelBuilder typeId(Long typeId)
-    {
-        this.typeId = typeId;
         return this;
     }
 
@@ -46,7 +39,6 @@ public final class ChannelBuilder
     {
         Channel channel = new Channel();
         channel.setId(id);
-        channel.setTypeId(typeId);
         channel.setSpecId(specId);
         channel.setCode(code);
         return channel;

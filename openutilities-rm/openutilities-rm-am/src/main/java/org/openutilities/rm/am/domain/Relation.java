@@ -5,31 +5,46 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "relations")
-@IdClass(RelationId.class)
+//@IdClass(RelationId.class)
+@AssociationOverrides({
+        @AssociationOverride(name ="pk.fromResource", joinColumns = @JoinColumn(name ="from_res_id")),
+        @AssociationOverride(name ="pk.toResource", joinColumns = @JoinColumn(name ="to_res_id"))
+})
 public class Relation implements Serializable
 {
-    @Id
-    @Column(name = "from_res_id")
-    private Long fromResourceId;
+    public static final Long UP_TO_METER = 1L;
+    public static final Long ANY_TO_CHANNEL = 2L;
 
-    @Id
-    @Column(name = "to_res_id")
-    private Long toResourceId;
+    @EmbeddedId
+    private RelationId pk = new RelationId();
+//    @Id
+//    @Column(name = "from_res_id")
+//    private Long fromResourceId;
+
+//    @Id
+//    @Column(name = "to_res_id")
+//    private Long toResourceId;
 
     @Column(name = "type_id")
     private Long typeId;
 
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "from_res_id", referencedColumnName = "id")
-    private Resource fromResource;
 
-    @ManyToOne
-    @PrimaryKeyJoinColumn(name = "to_res_id", referencedColumnName = "id")
-    private Resource toResource;
+    public Relation()
+    {
+    }
 
-    //<editor-fold desc="Boilerplate code code">
+    public Relation(Resource fromResource, Resource toResource, Long typeId)
+    {
+        //this.fromResourceId = fromResourceId;
+        //this.toResourceId = toResourceId;
+        this.typeId = typeId;
+        this.pk.setFromResource(fromResource);
+        this.pk.setToResource(toResource);
+    }
 
-    public Long getTypeId()
+    //<editor-fold desc="Getters/Setters">
+
+   /* public Long getTypeId()
     {
         return typeId;
     }
@@ -58,6 +73,6 @@ public class Relation implements Serializable
     {
         this.toResource = toResource;
     }
-
+*/
     //</editor-fold>
 }

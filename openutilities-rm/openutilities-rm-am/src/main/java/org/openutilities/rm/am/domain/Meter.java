@@ -16,20 +16,20 @@ public class Meter extends Resource implements Serializable
     @Column(name = "serial_number")
     private String serialNumber;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "toResource")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.toResource")
     @Where(clause = "type_id = 1")
     private List<Relation> usagePoints = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "fromResource")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pk.fromResource")
     @Where(clause = "type_id = 2")
     private List<Relation> channels = new ArrayList<>();
-
-    //<editor-fold desc="Boilerplate code">
 
     public Meter()
     {
         super(2L);
     }
+
+    //<editor-fold desc="Getters/Setters">
 
     public String getSerialNumber()
     {
@@ -46,9 +46,9 @@ public class Meter extends Resource implements Serializable
         return channels;
     }
 
-    public void setChannels(List<Relation> channels)
+    public List<Relation> getUsagePoints()
     {
-        this.channels = channels;
+        return usagePoints;
     }
 
     //</editor-fold>

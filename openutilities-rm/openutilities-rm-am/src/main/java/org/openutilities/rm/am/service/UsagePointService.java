@@ -18,4 +18,9 @@ public class UsagePointService
     {
         return usagePointRepository.findByCode(code);
     }
+
+    public UsagePoint saveUsagePoint(UsagePoint up)
+    {
+        return usagePointRepository.save(up);
+    }
 }

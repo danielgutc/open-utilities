@@ -5,7 +5,6 @@ import org.openutilities.rm.am.domain.Meter;
 public final class MeterBuilder
 {
     protected Long id;
-    protected Long typeId;
     protected Long specId;
     protected String code;
 
@@ -21,12 +20,6 @@ public final class MeterBuilder
     public MeterBuilder id(Long id)
     {
         this.id = id;
-        return this;
-    }
-
-    public MeterBuilder typeId(Long typeId)
-    {
-        this.typeId = typeId;
         return this;
     }
 
@@ -46,7 +39,6 @@ public final class MeterBuilder
     {
         Meter meter = new Meter();
         meter.setId(id);
-        meter.setTypeId(typeId);
         meter.setSpecId(specId);
         meter.setCode(code);
         return meter;

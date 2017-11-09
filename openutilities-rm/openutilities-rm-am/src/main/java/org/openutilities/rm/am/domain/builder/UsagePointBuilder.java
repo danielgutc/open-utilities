@@ -9,7 +9,6 @@ import java.util.List;
 public final class UsagePointBuilder
 {
     protected Long id;
-    protected Long typeId;
     protected Long specId;
     protected String code;
     private List<Relation> meters = new ArrayList<>();
@@ -24,27 +23,9 @@ public final class UsagePointBuilder
         return new UsagePointBuilder();
     }
 
-    public UsagePointBuilder meters(List<Relation> meters)
-    {
-        this.meters = meters;
-        return this;
-    }
-
     public UsagePointBuilder id(Long id)
     {
         this.id = id;
-        return this;
-    }
-
-    public UsagePointBuilder typeId(Long typeId)
-    {
-        this.typeId = typeId;
-        return this;
-    }
-
-    public UsagePointBuilder channels(List<Relation> channels)
-    {
-        this.channels = channels;
         return this;
     }
 
@@ -63,10 +44,7 @@ public final class UsagePointBuilder
     public UsagePoint build()
     {
         UsagePoint usagePoint = new UsagePoint();
-        usagePoint.setMeters(meters);
         usagePoint.setId(id);
-        usagePoint.setTypeId(typeId);
-        usagePoint.setChannels(channels);
         usagePoint.setSpecId(specId);
         usagePoint.setCode(code);
         return usagePoint;

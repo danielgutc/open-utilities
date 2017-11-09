@@ -17,7 +17,7 @@ import java.io.Serializable;
 public class Resource implements Serializable
 {
     @Id
-    @GeneratedValue
+    //@GeneratedValue
     protected Long id;
     @Column(name = "type_id", updatable = false, insertable = false)
     protected Long typeId;
@@ -26,14 +26,14 @@ public class Resource implements Serializable
     @Column (nullable = false, unique = true)
     protected String code;
 
-    //<editor-fold desc="Boilerplate code">
-
     public Resource() {}
 
     public Resource(Long typeId)
     {
         this.typeId = typeId;
     }
+
+    //<editor-fold desc="Getters/Setters">
 
     public Long getId()
     {
