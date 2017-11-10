@@ -1,4 +1,4 @@
-package org.openutilities.proc.core.streaming;
+package org.openutilities.processing.core.streaming;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -9,7 +9,7 @@ import org.apache.spark.streaming.api.java.JavaStreamingContext;
 import org.apache.spark.streaming.kafka010.ConsumerStrategies;
 import org.apache.spark.streaming.kafka010.KafkaUtils;
 import org.apache.spark.streaming.kafka010.LocationStrategies;
-import org.openutilities.proc.core.config.Configuration;
+import org.openutilities.processing.core.config.Configuration;
 
 import java.util.Arrays;
 import java.util.Collection;

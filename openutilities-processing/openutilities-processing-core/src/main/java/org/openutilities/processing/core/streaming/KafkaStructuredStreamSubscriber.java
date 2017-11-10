@@ -1,9 +1,9 @@
-package org.openutilities.proc.core.streaming;
+package org.openutilities.processing.core.streaming;
 
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
-import org.openutilities.proc.core.config.Configuration;
-import org.openutilities.proc.core.session.SparkSessionFactory;
+import org.openutilities.processing.core.config.Configuration;
+import org.openutilities.processing.core.session.SparkSessionFactory;
 
 /**
  * Encapsulates an structured streams to Kafka.

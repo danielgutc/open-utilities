@@ -1,6 +1,6 @@
-package org.openutilities.proc.core.domain.builder;
+package org.openutilities.processing.core.domain.builder;
 
-import org.openutilities.proc.core.domain.Reading;
+import org.openutilities.processing.core.domain.Reading;
 
 import java.math.BigDecimal;
 import java.util.Date;

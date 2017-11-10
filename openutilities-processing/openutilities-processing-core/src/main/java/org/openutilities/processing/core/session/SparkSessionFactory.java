@@ -1,7 +1,7 @@
-package org.openutilities.proc.core.session;
+package org.openutilities.processing.core.session;
 
 import org.apache.spark.sql.SparkSession;
-import org.openutilities.proc.core.config.Configuration;
+import org.openutilities.processing.core.config.Configuration;
 
 /**
  * Spark Session Factory using job properties.

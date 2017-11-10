@@ -1,4 +1,4 @@
-package org.openutilities.proc.core.job;
+package org.openutilities.processing.core.job;
 
 /**
  * Interface definition for Processing jobs.

@@ -1,4 +1,4 @@
-package org.openutilities.proc.core.domain;
+package org.openutilities.processing.core.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -14,7 +14,8 @@ public class Reading
     private Date date;
     private Long usagePointId;
 
-    //<editor-fold desc="Boilerplate code">
+    //<editor-fold desc="Getters/Setters">
+
     public String getMeterSerial()
     {
         return meterSerial;
@@ -94,6 +95,7 @@ public class Reading
     {
         this.usagePointId = usagePointId;
     }
+
     //</editor-fold>
 
 }
