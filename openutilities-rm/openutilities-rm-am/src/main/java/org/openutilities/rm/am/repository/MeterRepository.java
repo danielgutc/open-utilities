@@ -1,6 +1,6 @@
 package org.openutilities.rm.am.repository;
 
-import org.openutilities.rm.am.domain.Meter;
+import org.openutilities.core.domain.Meter;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

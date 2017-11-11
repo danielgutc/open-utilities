@@ -88,6 +88,13 @@
             <version>${commons.lang3.version}</version>
         </dependency>
 
+        <!-- Openutilities dependencies -->
+        <dependency>
+            <groupId>org.openutilities.core.domain</groupId>
+            <artifactId>openutilities-core-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!-- Testing -->
         <dependency>
             <groupId>org.mockito</groupId>

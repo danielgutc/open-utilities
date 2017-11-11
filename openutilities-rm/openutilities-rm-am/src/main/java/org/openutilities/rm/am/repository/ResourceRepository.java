@@ -1,8 +1,6 @@
 package org.openutilities.rm.am.repository;
 
-import java.util.Optional;
-
-import org.openutilities.rm.am.domain.Resource;
+import org.openutilities.core.domain.Resource;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

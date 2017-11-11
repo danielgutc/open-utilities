@@ -1,4 +1,4 @@
-package org.openutilities.processing.core.domain;
+package org.openutilities.core.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;

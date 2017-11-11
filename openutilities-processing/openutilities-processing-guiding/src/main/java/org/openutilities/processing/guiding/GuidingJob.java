@@ -7,9 +7,8 @@ import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaInputDStream;
-import org.openutilities.processing.core.domain.Reading;
-
-import org.openutilities.processing.core.domain.builder.ReadingBuilder;
+import org.openutilities.core.domain.Reading;
+import org.openutilities.core.domain.builder.ReadingBuilder;
 import org.openutilities.processing.core.streaming.KafkaJavaDirectStreamBuilder;
 
 import static com.datastax.spark.connector.japi.CassandraJavaUtil.*;

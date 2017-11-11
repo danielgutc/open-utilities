@@ -1,6 +1,6 @@
 package org.openutilities.rm.am.service;
 
-import org.openutilities.rm.am.domain.Channel;
+import org.openutilities.core.domain.Channel;
 import org.openutilities.rm.am.repository.ChannelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

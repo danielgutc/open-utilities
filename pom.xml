@@ -29,6 +29,7 @@
         <module>openutilities-processing</module>
         <module>openutilities-rm</module>
         <module>openutilities-integration</module>
+        <module>openutilities-core</module>
     </modules>
 
     <dependencies>

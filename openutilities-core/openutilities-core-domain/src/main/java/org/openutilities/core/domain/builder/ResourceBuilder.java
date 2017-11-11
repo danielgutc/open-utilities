@@ -1,6 +1,7 @@
-package org.openutilities.rm.am.domain.builder;
+package org.openutilities.core.domain.builder;
 
-import org.openutilities.rm.am.domain.Resource;
+
+import org.openutilities.core.domain.Resource;
 
 public final class ResourceBuilder
 {

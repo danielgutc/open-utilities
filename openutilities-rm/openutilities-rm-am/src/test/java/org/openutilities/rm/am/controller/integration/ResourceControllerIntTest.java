@@ -2,8 +2,8 @@ package org.openutilities.rm.am.controller.integration;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openutilities.rm.am.domain.Resource;
-import org.openutilities.rm.am.domain.builder.ResourceBuilder;
+import org.openutilities.core.domain.Resource;
+import org.openutilities.core.domain.builder.ResourceBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;

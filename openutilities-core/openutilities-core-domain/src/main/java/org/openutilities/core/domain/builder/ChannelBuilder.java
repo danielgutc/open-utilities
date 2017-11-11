@@ -1,6 +1,7 @@
-package org.openutilities.rm.am.domain.builder;
+package org.openutilities.core.domain.builder;
 
-import org.openutilities.rm.am.domain.Channel;
+
+import org.openutilities.core.domain.Channel;
 
 public final class ChannelBuilder
 {

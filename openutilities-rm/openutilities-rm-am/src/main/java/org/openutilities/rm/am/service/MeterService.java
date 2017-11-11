@@ -1,6 +1,6 @@
 package org.openutilities.rm.am.service;
 
-import org.openutilities.rm.am.domain.Meter;
+import org.openutilities.core.domain.Meter;
 import org.openutilities.rm.am.repository.MeterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

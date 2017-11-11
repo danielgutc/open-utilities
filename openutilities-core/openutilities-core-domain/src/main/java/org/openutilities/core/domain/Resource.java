@@ -1,4 +1,4 @@
-package org.openutilities.rm.am.domain;
+package org.openutilities.core.domain;
 
 import javax.persistence.*;
 

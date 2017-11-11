@@ -1,6 +1,6 @@
 package org.openutilities.rm.am.controller;
 
-import org.openutilities.rm.am.domain.Resource;
+import org.openutilities.core.domain.Resource;
 import org.openutilities.rm.am.service.ResourceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -1,10 +1,12 @@
-package org.openutilities.rm.am.domain.builder;
+package org.openutilities.core.domain.builder;
 
-import org.openutilities.rm.am.domain.Relation;
-import org.openutilities.rm.am.domain.UsagePoint;
+
+import org.openutilities.core.domain.Relation;
+import org.openutilities.core.domain.UsagePoint;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public final class UsagePointBuilder
 {
