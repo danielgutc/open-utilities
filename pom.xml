@@ -119,6 +119,7 @@
         <profile>
             <id>local</id>
             <properties>
+                <hazelcst.hostname>192.168.247.100</hazelcst.hostname>
                 <spark.cassandra.connection.host>spark-vm-local</spark.cassandra.connection.host>
                 <spark.cassandra.connection.port>9042</spark.cassandra.connection.port>
                 <kafka.hostname>localhost</kafka.hostname>
@@ -134,6 +135,7 @@
         <profile>
             <id>dev</id>
             <properties>
+                <hazelcst.hostname>192.168.247.100</hazelcst.hostname>
                 <spark.cassandra.connection.host>spark-vm</spark.cassandra.connection.host>
                 <spark.cassandra.connection.port>9042</spark.cassandra.connection.port>
                 <kafka.hostname>spark-vm</kafka.hostname>

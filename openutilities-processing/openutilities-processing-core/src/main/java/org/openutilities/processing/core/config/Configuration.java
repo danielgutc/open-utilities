@@ -65,23 +65,23 @@ public class Configuration
         return properties.get(propertyName);
     }
 
-    public static <T> T getTypedProperty(String propertyName)
+    public static <T> T getTypedPropertyValue(String propertyName)
     {
         return (T) properties.get(propertyName);
     }
 
-    public static <T> long getPropertyAsLong(String propertyName)
+    public static long getPropertyAsLong(String propertyName)
     {
         return Long.parseLong(getPropertyAsString(propertyName));
     }
 
-    public static <T> int getPropertyAsInt(String propertyName)
+    public static int getPropertyAsInt(String propertyName)
     {
         return Integer.parseInt(getPropertyAsString(propertyName));
     }
 
     public static String getPropertyAsString(String propertyName)
     {
-        return Configuration.<String>getTypedProperty(propertyName);
+        return Configuration.<String>getTypedPropertyValue(propertyName);
     }
 }

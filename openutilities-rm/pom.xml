@@ -113,6 +113,12 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
 
+        <!-- Hazelcast is used as cache system -->
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+        </dependency>
+
         <!-- Testing -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

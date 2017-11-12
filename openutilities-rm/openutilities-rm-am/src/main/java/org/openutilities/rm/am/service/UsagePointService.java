@@ -14,13 +14,21 @@ public class UsagePointService
     @Autowired
     private UsagePointRepository usagePointRepository;
 
+    @Autowired
+    private CacheService cacheService;
+
     public UsagePoint getUsagePoint(String code)
     {
-        return usagePointRepository.findByCode(code);
+        UsagePoint up = cacheService.getObjectFromCache("usagePoints", code);
+
+        return up != null ? up : usagePointRepository.findByCode(code);
     }
 
     public UsagePoint saveUsagePoint(UsagePoint up)
     {
-        return usagePointRepository.save(up);
+        UsagePoint upDb = usagePointRepository.save(up);
+        cacheService.addObjectToCache("usagePoints", up.getCode(), up);
+
+        return upDb;
     }
 }
