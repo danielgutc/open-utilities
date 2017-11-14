@@ -18,6 +18,8 @@ import static org.junit.Assert.assertEquals;
 @SpringBootTest
 public class CacheServiceIntTest
 {
+    private static final String CACHE_NAME = "usagePoints";
+
     @Autowired
     private CacheService cacheService;
 
@@ -28,9 +30,9 @@ public class CacheServiceIntTest
         Meter meter = MeterBuilder.aMeter().id(2L).code("mtr-1").build();
         up.getMeters().add(new Relation(up, meter, Relation.UP_TO_METER));
 
-        cacheService.addObjectToCache("usagePoints", up.getCode(), up);
+        cacheService.addObjectToCache(CACHE_NAME, up.getCode(), up);
 
-        UsagePoint upCached = cacheService.getObjectFromCache("usagePoints", up.getCode());
+        UsagePoint upCached = cacheService.getObjectFromCache(CACHE_NAME, up.getCode());
 
         assertEquals("UP not cached properly", upCached.getMeters().size(), 1);
     }

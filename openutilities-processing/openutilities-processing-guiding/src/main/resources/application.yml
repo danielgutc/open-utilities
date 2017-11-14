@@ -15,3 +15,5 @@ kafka:
     servers: @kafka.bootstrap.servers@
   topic:
     name: mdm-readings-csv-input
+hazelcast:
+  hostname: @hazelcast.hostname@

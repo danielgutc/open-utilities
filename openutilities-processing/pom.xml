@@ -25,6 +25,7 @@
         <jackson.dataformat.yaml.version>2.3.0</jackson.dataformat.yaml.version>
         <jackson.databind.version>2.2.3</jackson.databind.version>
         <commons.lang3.version>3.4</commons.lang3.version>
+        <hazelcast.version>3.9</hazelcast.version>
     </properties>
 
     <modules>
@@ -93,6 +94,18 @@
             <groupId>org.openutilities.core.domain</groupId>
             <artifactId>openutilities-core-domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Hazelcast cache -->
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast</artifactId>
+            <version>${hazelcast.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-client</artifactId>
+            <version>${hazelcast.version}</version>
         </dependency>
 
         <!-- Testing -->

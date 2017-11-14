@@ -7,8 +7,11 @@ import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaInputDStream;
+import org.openutilities.core.domain.Channel;
+import org.openutilities.core.domain.Meter;
 import org.openutilities.core.domain.Reading;
 import org.openutilities.core.domain.builder.ReadingBuilder;
+import org.openutilities.processing.core.cache.CacheService;
 import org.openutilities.processing.core.streaming.KafkaJavaDirectStreamBuilder;
 
 import static com.datastax.spark.connector.japi.CassandraJavaUtil.*;
@@ -24,6 +27,7 @@ import java.util.Arrays;
 public class GuidingJob
 {
     public static final String KAFKA_TOPIC_NAME = "kafka.topic.name";
+    private CacheService cacheService;
 
     /**
      * Main Spark job entry.
@@ -38,6 +42,11 @@ public class GuidingJob
         guidingJob.startGuiding();
     }
 
+    public GuidingJob()
+    {
+        cacheService = new CacheService();
+    }
+
     /**
      * Start streaming Kafka messages and guide the readings.
      *
@@ -46,6 +55,7 @@ public class GuidingJob
     private void startGuiding() throws Exception
     {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy'T'HH:mm:ss'Z'");
+
         JavaInputDStream<ConsumerRecord<String, String>> stream = KafkaJavaDirectStreamBuilder.createDirectStream();
 
         JavaDStream<Reading> readingJavaDStream =
@@ -59,7 +69,8 @@ public class GuidingJob
                                     .date(dateFormat.parse(fields[3]))
                                     .value(new BigDecimal(fields[2]))
                                     .build();
-                        });
+                        })
+                        .map(this::guideReading);
 
         readingJavaDStream.count().print();
 
@@ -78,20 +89,20 @@ public class GuidingJob
     /**
      * Encapsulates the syntactic and semantic validation.
      *
-     * @param readings to guide
+     * @param reading to guide
+     * @return guided reading
      */
-    private void guideReadings(Dataset<String> readings)
+    private Reading guideReading(Reading reading)
     {
-        // TODO implement guiding logic.
-    }
+        Meter meter = cacheService.getObjectFromCache("meters", reading.getMeterSerial());
+        Channel channel = (Channel) meter.getChannels()
+                .parallelStream()
+                .filter(r -> ((Channel)r.getToResource()).getSpecId() == Long.parseLong(reading.getMeterChannel()))
+                .findFirst().get().getToResource();
 
-    /**
-     * Persists the readings in database.
-     *
-     * @param readings
-     */
-    private void storeReadings(Dataset<String> readings)
-    {
+        reading.setMeterId(meter.getId());
+        reading.setChannelId(channel.getId());
 
+        return reading;
     }
 }
