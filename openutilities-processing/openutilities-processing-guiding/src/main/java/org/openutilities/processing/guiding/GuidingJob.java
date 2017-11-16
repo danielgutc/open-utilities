@@ -4,7 +4,6 @@ import com.datastax.spark.connector.japi.CassandraStreamingJavaUtil;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.spark.api.java.function.FlatMapFunction;
-import org.apache.spark.sql.Dataset;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaInputDStream;
 import org.openutilities.core.domain.Channel;
@@ -16,6 +15,7 @@ import org.openutilities.processing.core.streaming.KafkaJavaDirectStreamBuilder;
 
 import static com.datastax.spark.connector.japi.CassandraJavaUtil.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,10 +24,9 @@ import java.util.Arrays;
 /**
  * Guiding implementation parses input messages with readings and perform syntactic and semantic validation.
  */
-public class GuidingJob
+public class GuidingJob implements Serializable
 {
     public static final String KAFKA_TOPIC_NAME = "kafka.topic.name";
-    private CacheService cacheService;
 
     /**
      * Main Spark job entry.
@@ -42,11 +41,6 @@ public class GuidingJob
         guidingJob.startGuiding();
     }
 
-    public GuidingJob()
-    {
-        cacheService = new CacheService();
-    }
-
     /**
      * Start streaming Kafka messages and guide the readings.
      *
@@ -55,7 +49,6 @@ public class GuidingJob
     private void startGuiding() throws Exception
     {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy'T'HH:mm:ss'Z'");
-
         JavaInputDStream<ConsumerRecord<String, String>> stream = KafkaJavaDirectStreamBuilder.createDirectStream();
 
         JavaDStream<Reading> readingJavaDStream =
@@ -79,7 +72,9 @@ public class GuidingJob
                         Pair.of("meterChannel", "channel"),
                         Pair.of("date", "read_dt"),
                         Pair.of("channelId", "channel_id"),
-                        Pair.of("typeId", "reading_type_id"))
+                        Pair.of("typeId", "reading_type_id"),
+                        Pair.of("meterId", "meter_id"),
+                        Pair.of("channelId", "channel_id"))
                 ).saveToCassandra();
 
         readingJavaDStream.context().start();
@@ -94,7 +89,7 @@ public class GuidingJob
      */
     private Reading guideReading(Reading reading)
     {
-        Meter meter = cacheService.getObjectFromCache("meters", reading.getMeterSerial());
+        Meter meter = CacheService.getInstance().getObjectFromCache("meters", reading.getMeterSerial());
         Channel channel = (Channel) meter.getChannels()
                 .parallelStream()
                 .filter(r -> ((Channel)r.getToResource()).getSpecId() == Long.parseLong(reading.getMeterChannel()))
