@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+                 version="2.0">
+    <entity class="org.openutilities.core.domain.Resource" access="FIELD">
+        <table name="resources"/>
+        <inheritance strategy="SINGLE_TABLE"/>
+        <discriminator-column name="type_id"/>
+        <attributes>
+            <id name="id"/>
+            <basic name="typeId">
+                <column name="type_id" updatable="false" insertable="false"/>
+            </basic>
+            <basic name="specId">
+                <column name="spec_id"/>
+            </basic>
+            <basic name="code">
+                <column name="code"/>
+            </basic>
+        </attributes>
+    </entity>
+
+    <entity class="org.openutilities.core.domain.UsagePoint" access="FIELD">
+        <discriminator-value>1</discriminator-value>
+        <attributes>
+            <one-to-many name="meters" fetch="EAGER" mapped-by="fromResource">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
+
+            <one-to-many name="channels" fetch="EAGER" mapped-by="fromResource">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+
+    <entity class="org.openutilities.core.domain.Meter" access="FIELD">
+        <discriminator-value>2</discriminator-value>
+        <attributes>
+            <basic name="serialNumber">
+                <column name="serial_number"/>
+            </basic>
+            <one-to-many name="channels" fetch="EAGER" mapped-by="fromResource">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
+            <one-to-many name="usagePoints" fetch="EAGER" mapped-by="toResource">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+
+    <entity class="org.openutilities.core.domain.Channel" access="FIELD">
+        <discriminator-value>3</discriminator-value>
+        <attributes>
+            <one-to-many name="owner" fetch="EAGER" mapped-by="toResource">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </one-to-many>
+        </attributes>
+    </entity>
+
+
+    <entity class="org.openutilities.core.domain.Relation" access="FIELD">
+        <table name="relations"/>
+        <primary-key-join-column name="from_res_id" referenced-column-name="id" />
+        <primary-key-join-column name="to_res_id" referenced-column-name="id" />
+        <id-class class="org.openutilities.core.domain.RelationId"/>
+        <attributes>
+            <id name="fromResourceId">
+                <column name="from_res_id"/>
+            </id>
+            <id name="toResourceId">
+                <column name="to_res_id"/>
+            </id>
+            <basic name="typeId">
+                <column name="type_id" />
+            </basic>
+            <many-to-one name="fromResource">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </many-to-one>
+            <many-to-one name="toResource">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </many-to-one>
+        </attributes>
+    </entity>
+
+    <embeddable class="org.openutilities.core.domain.RelationId" access="FIELD">
+        <attributes>
+            <many-to-one name="fromResource" fetch="EAGER">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </many-to-one>
+            <many-to-one name="toResource" fetch="EAGER">
+                <cascade>
+                    <cascade-all/>
+                </cascade>
+            </many-to-one>
+        </attributes>
+    </embeddable>
+
+</entity-mappings>

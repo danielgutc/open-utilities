@@ -1,29 +1,15 @@
 package org.openutilities.core.domain;
 
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.io.Serializable;
 
 /**
  * Represents a resource.
  */
-@Entity
-@Table(name = "resources")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type_id")
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Resource implements Serializable
 {
-    @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
-    @Column(name = "type_id", updatable = false, insertable = false)
     protected Long typeId;
-    @Column(name = "spec_id")
     protected Long specId;
-    @Column (nullable = false, unique = true)
     protected String code;
 
     public Resource() {}

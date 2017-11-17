@@ -1,8 +1,5 @@
 package org.openutilities.core.domain;
 
-import org.hibernate.annotations.Where;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,13 +7,9 @@ import java.util.List;
 /**
  * Represents a data channel.
  */
-@Entity(name = "Channel")
-@DiscriminatorValue("3")
+
 public class Channel extends Resource implements Serializable
 {
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "toResource", cascade = CascadeType.ALL)
-    @Where(clause = "type_id = 2")
     private List<Relation> owner = new ArrayList<>();
 
     public Channel()

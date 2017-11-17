@@ -23,7 +23,7 @@
         <jackson.annotations.version>2.9.2</jackson.annotations.version>
     </properties>
 
-    <dependencies>
+  <!--  <dependencies>
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
@@ -42,5 +42,5 @@
             <version>${jackson.annotations.version}</version>
             <scope>provided</scope>
         </dependency>
-    </dependencies>
+    </dependencies>-->
 </project>

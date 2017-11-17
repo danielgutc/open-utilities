@@ -1,36 +1,19 @@
 package org.openutilities.core.domain;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
  * Represents a temporal relation between 2 resources
  */
-@Entity
-@Table(name = "relations")
-@IdClass(RelationId.class)
 public class Relation implements Serializable
 {
     public static final Long UP_TO_METER = 1L;
     public static final Long ANY_TO_CHANNEL = 2L;
 
-    @Id
-    @Column(name = "from_res_id")
     private Long fromResourceId;
-
-    @Id
-    @Column(name = "to_res_id")
     private Long toResourceId;
-
-    @Column(name = "type_id")
     private Long typeId;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name = "from_res_id", referencedColumnName = "id")
     private Resource fromResource;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn(name = "to_res_id", referencedColumnName = "id")
     private Resource toResource;
 
     public Relation()
@@ -74,6 +57,16 @@ public class Relation implements Serializable
     public void setToResource(Resource toResource)
     {
         this.toResource = toResource;
+    }
+
+    public Long getFromResourceId()
+    {
+        return fromResourceId;
+    }
+
+    public Long getToResourceId()
+    {
+        return toResourceId;
     }
 
     //</editor-fold>

@@ -1,9 +1,10 @@
 package org.openutilities.core.domain;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Reading
+public class Reading implements Serializable
 {
     private String meterSerial;
     private Long meterId;
@@ -13,6 +14,8 @@ public class Reading
     private BigDecimal value;
     private Date date;
     private Long usagePointId;
+    private Integer status;
+    private Long version;
 
     //<editor-fold desc="Getters/Setters">
 
@@ -94,6 +97,26 @@ public class Reading
     public void setUsagePointId(Long usagePointId)
     {
         this.usagePointId = usagePointId;
+    }
+
+    public Integer getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(Integer status)
+    {
+        this.status = status;
+    }
+
+    public Long getVersion()
+    {
+        return version;
+    }
+
+    public void setVersion(Long version)
+    {
+        this.version = version;
     }
 
     //</editor-fold>
