@@ -18,29 +18,5 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>
-        <hibernate.annotations.version>3.5.6-Final</hibernate.annotations.version>
-        <jackson.annotations.version>2.9.2</jackson.annotations.version>
     </properties>
-
-  <!--  <dependencies>
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <version>${hibernate.jpa.api.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-annotations</artifactId>
-            <version>${hibernate.annotations.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson.annotations.version}</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>-->
 </project>
