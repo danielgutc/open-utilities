@@ -7,15 +7,18 @@ import org.openutilities.core.domain.Relation;
 import org.openutilities.core.domain.UsagePoint;
 import org.openutilities.core.domain.builder.MeterBuilder;
 import org.openutilities.core.domain.builder.UsagePointBuilder;
+import org.openutilities.rm.am.App;
 import org.openutilities.rm.am.service.CacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@ContextConfiguration(classes = {App.class, HazelcastConfiguration.class})
 public class CacheServiceIntTest
 {
     private static final String CACHE_NAME = "usagePoints";
