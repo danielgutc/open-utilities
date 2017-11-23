@@ -73,16 +73,23 @@
         <table name="relations"/>
         <primary-key-join-column name="from_res_id" referenced-column-name="id" />
         <primary-key-join-column name="to_res_id" referenced-column-name="id" />
+
         <id-class class="org.openutilities.core.domain.RelationId"/>
         <attributes>
             <id name="fromResourceId">
-                <column name="from_res_id"/>
+                <column name="from_resource_id" insertable="false" updatable="false"/>
             </id>
             <id name="toResourceId">
-                <column name="to_res_id"/>
+                <column name="to_resource_id" insertable="false" updatable="false"/>
+            </id>
+            <id name="fromDt">
+                <column name="from_dt" insertable="false" updatable="false" />
             </id>
             <basic name="typeId">
                 <column name="type_id" />
+            </basic>
+            <basic name="toDt">
+                <column name="to_dt" />
             </basic>
             <many-to-one name="fromResource">
                 <cascade>

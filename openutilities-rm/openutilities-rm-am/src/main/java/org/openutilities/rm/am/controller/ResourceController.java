@@ -27,7 +27,7 @@ public class ResourceController
     @GetMapping(value = "/resource/{code}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public Resource getResourceById(@PathVariable String code)
+    public Resource getResourceByCode(@PathVariable String code)
     {
         logger.debug("Requested resource code '%s'", code);
 

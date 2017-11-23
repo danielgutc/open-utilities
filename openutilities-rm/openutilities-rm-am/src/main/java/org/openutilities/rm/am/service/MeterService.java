@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.Date;
 
 /**
  * Meter service
@@ -30,7 +31,7 @@ public class MeterService
     {
         Meter meter = MeterBuilder.aMeter().id(1001L).code("mtr-1").serialNumber("123456").build();
         Channel channel = ChannelBuilder.aChannel().id(1002L).code("ch-1").specId(6001L).build();
-        meter.getChannels().add(new Relation(meter, channel, Relation.ANY_TO_CHANNEL));
+        meter.getChannels().add(new Relation(meter, channel, new Date(), null, Relation.ANY_TO_CHANNEL));
 
         saveMeter(meter);
     }

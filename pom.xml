@@ -119,14 +119,16 @@
         <profile>
             <id>local</id>
             <properties>
+                <profile.id>local</profile.id>
                 <hazelcast.hostname>192.168.247.100</hazelcast.hostname>
                 <spark.cassandra.connection.host>spark-vm-local</spark.cassandra.connection.host>
                 <spark.cassandra.connection.port>9042</spark.cassandra.connection.port>
-                <kafka.hostname>localhost</kafka.hostname>
+                <database.connection.url></database.connection.url>
+                <kafka.hostname>spark-vm-local</kafka.hostname>
                 <kafka.port>9092</kafka.port>
                 <kafka.bootstrap.servers>${kafka.hostname}:${kafka.port}</kafka.bootstrap.servers>
                 <docker.image.prefix>docker-host:2375</docker.image.prefix>
-                <components.rm.am.server.port>9001</components.rm.am.server.port>
+                <components.rm.am.port>9001</components.rm.am.port>
                 <components.integration.collection.csv.port>9002</components.integration.collection.csv.port>
                 <components.integration.collection.csv.hotfolder>c:\Temp\hotfolder</components.integration.collection.csv.hotfolder>
                 <h2.console.enabled>true</h2.console.enabled>
@@ -135,14 +137,16 @@
         <profile>
             <id>dev</id>
             <properties>
+                <profile.id>dev</profile.id>
                 <hazelcast.hostname>192.168.247.100</hazelcast.hostname>
                 <spark.cassandra.connection.host>spark-vm</spark.cassandra.connection.host>
                 <spark.cassandra.connection.port>9042</spark.cassandra.connection.port>
+                <database.connection.url>jdbc:postgresql://spark-vm-local:5432/postgres?user=postgres&amp;currentSchema=mdm</database.connection.url>
                 <kafka.hostname>spark-vm</kafka.hostname>
                 <kafka.port>9092</kafka.port>
                 <kafka.bootstrap.servers>${kafka.hostname}:${kafka.port}</kafka.bootstrap.servers>
                 <docker.image.prefix>docker-host:2375</docker.image.prefix>
-                <components.rm.am.server.port>9001</components.rm.am.server.port>
+                <components.rm.am.port>9001</components.rm.am.port>
                 <components.integration.collection.csv.port>9002</components.integration.collection.csv.port>
                 <components.integration.collection.csv.hotfolder>c:\Temp\hotfolder</components.integration.collection.csv.hotfolder>
                 <h2.console.enabled>true</h2.console.enabled>

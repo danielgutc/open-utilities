@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
+
 import static org.springframework.test.util.AssertionErrors.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -32,9 +34,10 @@ public class UsagePointServiceIntTest
         Channel sourceChannel = ChannelBuilder.aChannel().id(3L).specId(6002L).code("dch-4").build();
         Channel derivedChannel = ChannelBuilder.aChannel().id(4L).specId(7002L).code("dch-5").build();
 
-        up.getMeters().add(new Relation(up, meter, Relation.UP_TO_METER)); // UP -> meter relation
-        up.getChannels().add(new Relation(up, derivedChannel, Relation.ANY_TO_CHANNEL)); // UP -> channel relation
-        meter.getChannels().add(new Relation(meter, sourceChannel, Relation.ANY_TO_CHANNEL));
+        Date fromDt = new Date();
+        up.getMeters().add(new Relation(up, meter, fromDt, null, Relation.UP_TO_METER)); // UP -> meter relation
+        up.getChannels().add(new Relation(up, derivedChannel, fromDt, null, Relation.ANY_TO_CHANNEL)); // UP -> channel relation
+        meter.getChannels().add(new Relation(meter, sourceChannel, fromDt, null, Relation.ANY_TO_CHANNEL));
 
         usagePointService.saveUsagePoint(up);
 

@@ -14,6 +14,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -31,7 +33,7 @@ public class CacheServiceIntTest
     {
         UsagePoint up = UsagePointBuilder.anUsagePoint().specId(1L).code("up-1").build();
         Meter meter = MeterBuilder.aMeter().id(2L).code("mtr-1").build();
-        up.getMeters().add(new Relation(up, meter, Relation.UP_TO_METER));
+        up.getMeters().add(new Relation(up, meter, new Date(), null, Relation.UP_TO_METER));
 
         cacheService.addObjectToCache(CACHE_NAME, up.getCode(), up);
 

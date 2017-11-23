@@ -24,7 +24,7 @@
         <spring.restdocs.mockmvc.version>1.2.1.RELEASE</spring.restdocs.mockmvc.version>
         <docker.plugin.version>0.4.13</docker.plugin.version>
         <docker.maven.plugin.version>0.4.11</docker.maven.plugin.version>
-
+        <postgresql.version>42.1.4</postgresql.version>
         <logback.version>1.0.13</logback.version>
         <slf4j.api.version>1.7.21</slf4j.api.version>
     </properties>
@@ -55,7 +55,7 @@
         </dependency>
         -->
 
-        <!-- TODO Add dependencies for cloud patterns not covered by marathon:
+        <!-- TODO Add dependencies for cloud patterns not covered by kubernetes:
             Distributed/versioned configuration
             Service registration and discovery
             Routing
@@ -64,6 +64,7 @@
             Circuit Breakers (covered by marathon?)
             Leadership election and cluster state
             Distributed messaging
+            https://dzone.com/articles/deploying-microservices-spring-cloud-vs-kubernetes
             -->
 
         <!-- Persistence -->
@@ -71,14 +72,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
-        <!-- Comment H2 when using PostgreSQL -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope> <!-- TODO Change scope to test when PostgreSQL is configured -->
-        </dependency>
-
 
         <!-- Logging -->
         <dependency>
@@ -93,17 +86,7 @@
         </dependency>
 
         <!-- Persistence: PostgreSQL
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>9.3-1102-jdbc41</version>
-        </dependency>
 
-         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
-        </dependency>
          End of PostgreSQL area -->
 
         <!-- Openutilities dependencies -->
@@ -176,6 +159,35 @@
             </plugin>
         </plugins>
     </build>
+
+    <!-- Set persistence technology accor4ding to the maven profile -->
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>${postgresql.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>local</id>
+            <dependencies>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <scope>runtime</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
     <dependencyManagement>
         <dependencies>

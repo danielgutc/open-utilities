@@ -1,11 +1,27 @@
 server:
-  port: @components.rm.am.server.port@
-
-spring:
-  h2:
-    console:
-      enabled: @h2.console.enabled@
+  port: @components.rm.am.port@
 
 application:
   properties:
     debug: true
+spring:
+  profiles:
+    active: @profile.id@
+---
+spring:
+  profiles: dev
+  datasource:
+    url: @database.connection.url@
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
+---
+spring:
+  profiles: local
+  h2:
+    console:
+      enabled: @h2.console.enabled@
