@@ -26,6 +26,7 @@
         <jackson.databind.version>2.2.3</jackson.databind.version>
         <commons.lang3.version>3.4</commons.lang3.version>
         <hazelcast.version>3.9</hazelcast.version>
+        <junit.version>4.11</junit.version>
     </properties>
 
     <modules>
@@ -109,6 +110,12 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>${mockito.all.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

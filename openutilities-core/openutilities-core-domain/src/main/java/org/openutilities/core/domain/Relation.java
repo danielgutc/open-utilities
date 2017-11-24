@@ -83,17 +83,5 @@ public class Relation implements Serializable
     {
         this.toDt = toDt;
     }
-
-    /*
-    public Long getFromResourceId()
-    {
-        return fromResourceId;
-    }
-
-    public Long getToResourceId()
-    {
-        return toResourceId;
-    }*/
-
     //</editor-fold>
 }
