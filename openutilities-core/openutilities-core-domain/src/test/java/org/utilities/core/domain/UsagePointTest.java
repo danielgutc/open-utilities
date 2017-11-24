@@ -37,14 +37,14 @@ public class UsagePointTest
     public void UsagePointVerifyNegative()
     {
         UsagePoint up = UsagePointBuilder.anUsagePoint().id(1L).code("up-3").specId(1002L).build();
-        Meter meter = MeterBuilder.aMeter().id(2L).specId(2002L).code("mtr-2").build();
+        Meter meter = MeterBuilder.aMeter().id(2L).specId(2002L).code("mtr-2").serialNumber("123456").build();
         Channel sourceChannel1 = ChannelBuilder.aChannel().id(3L).specId(6001L).code("dch-4").build();
         Channel sourceChannel2 = ChannelBuilder.aChannel().id(4L).specId(6001L).code("dch-5").build();
 
         Date fromDt = new Date();
         up.getMeters().add(new Relation(up, meter, fromDt, null, Relation.UP_TO_METER)); // UP -> meter relation
-        up.getChannels().add(new Relation(up, sourceChannel1, fromDt, null, Relation.ANY_TO_CHANNEL)); // UP -> channel relation
-        meter.getChannels().add(new Relation(meter, sourceChannel2, fromDt, null, Relation.ANY_TO_CHANNEL));
+        meter.getChannels().add(new Relation(meter, sourceChannel1, fromDt, null, Relation.ANY_TO_CHANNEL)); // meter -> channel relation
+        meter.getChannels().add(new Relation(meter, sourceChannel2, fromDt, null, Relation.ANY_TO_CHANNEL)); // meter -> channel relation
 
         up.verify();
     }
