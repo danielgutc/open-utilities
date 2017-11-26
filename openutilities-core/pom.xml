@@ -10,6 +10,7 @@
 
     <modules>
         <module>openutilities-core-domain</module>
+        <module>openutilities-core-appservices</module>
     </modules>
 
     <parent>
@@ -21,30 +22,4 @@
 
     <name>openutilities-core-pom</name>
     <url>https://github.com/danielgutc/open-utilities</url>
-
-    <properties>
-        <mockito.all.version>2.0.2-beta</mockito.all.version>
-        <junit.version>4.11</junit.version>
-    </properties>
-
-    <dependencies>
-        <!-- Testing -->
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${mockito.all.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>        <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
-    </dependency>
-    </dependencies>
 </project>

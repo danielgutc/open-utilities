@@ -1,5 +1,5 @@
 server:
-  port: @components.rm.am.port@
+  port: @components.core.appservices.port@
 
 application:
   properties:
@@ -11,7 +11,7 @@ spring:
 spring:
   profiles: dev
   datasource:
-    url: @database.connection.url@&currentSchema=rm
+    url: @database.connection.url@&amp;currentSchema=core
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:

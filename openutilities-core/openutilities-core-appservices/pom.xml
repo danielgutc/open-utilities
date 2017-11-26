@@ -1,31 +1,22 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>org.openutilities.rm.pom</groupId>
-    <artifactId>openutilities-rm</artifactId>
-    <version>0.0.1-SNAPSHOT</version> <!-- TODO Add versioning mechanism -->
-    <packaging>pom</packaging>
-
     <parent>
-        <groupId>org.openutilities</groupId>
-        <artifactId>openutilities</artifactId>
-        <relativePath>../pom.xml</relativePath>
+        <artifactId>openutilities-core</artifactId>
+        <groupId>org.openutilities.core.pom</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-    <name>openutilities-rm-pom</name>
+    <groupId>org.openutilities.core.appservices</groupId>
+    <artifactId>openutilities-core-appservices</artifactId>
+    <packaging>jar</packaging>
+
+    <name>openutilities-core-appservices</name>
     <url>https://github.com/danielgutc/open-utilities</url>
 
     <properties>
-        <docker.image.prefix></docker.image.prefix>
-        <h2.console.enabled>false</h2.console.enabled>
-        <spring.restdocs.mockmvc.version>1.2.1.RELEASE</spring.restdocs.mockmvc.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <modules>
-        <module>openutilities-rm-am</module>
-    </modules>
 
     <dependencies>
         <!-- Spring Boot -->
@@ -67,21 +58,9 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Openutilities dependencies -->
         <dependency>
-            <groupId>org.openutilities.core.domain</groupId>
-            <artifactId>openutilities-core-domain</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <!-- Hazelcast is used as cache system -->
-        <dependency>
-            <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast-spring</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.hazelcast</groupId>
-            <artifactId>hazelcast-client</artifactId>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
         </dependency>
 
         <!-- Testing -->
