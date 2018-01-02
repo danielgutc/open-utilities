@@ -7,6 +7,9 @@ import org.openutilities.core.exceptions.DomainRuleException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Relations utils encapsulation
+ */
 public class RelationsUtils
 {
 

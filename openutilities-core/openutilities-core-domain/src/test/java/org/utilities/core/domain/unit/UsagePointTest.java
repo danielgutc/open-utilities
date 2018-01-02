@@ -1,8 +1,8 @@
-package org.utilities.core.domain;
+package org.utilities.core.domain.unit;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.junit.runners.JUnit4;
 import org.openutilities.core.domain.Channel;
 import org.openutilities.core.domain.Meter;
 import org.openutilities.core.domain.Relation;
@@ -14,7 +14,7 @@ import org.openutilities.core.exceptions.DomainRuleException;
 
 import java.util.Date;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(JUnit4.class)
 public class UsagePointTest
 {
     @Test
