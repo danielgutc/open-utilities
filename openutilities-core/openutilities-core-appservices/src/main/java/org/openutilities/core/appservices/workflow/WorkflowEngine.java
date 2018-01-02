@@ -8,7 +8,7 @@ public abstract class WorkflowEngine
     /**
      * Observe actions notifications node.
      *
-     * @param step producing the notification
+     * @param execution producing the notification
      */
-    public abstract void notify(Step step);
+    public abstract void notify(SimpleWorkflowExecution execution);
 }

@@ -3,7 +3,7 @@ package org.openutilities.core.appservices.workflow;
 import java.io.Serializable;
 
 /**
- * Represents an observable action
+ * Represents an observable action. http://www.dofactory.com/net/observer-design-pattern.
  */
 public abstract class Action implements Serializable
 {
@@ -30,4 +30,15 @@ public abstract class Action implements Serializable
     }
 
     public abstract void call(ContextParameters parameters);
+
+
+    public Step getObserverStep()
+    {
+        return observerStep;
+    }
+
+    public void setObserverStep(Step observerStep)
+    {
+        this.observerStep = observerStep;
+    }
 }

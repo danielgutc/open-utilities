@@ -5,13 +5,18 @@ application:
   properties:
     debug: true
 spring:
+  kafka:
+    bootstrap-servers: @kafka.bootstrap.servers@
+    consumer:
+      group-id: appServices
+      auto-offset: earliest
   profiles:
     active: @profile.id@
 ---
 spring:
   profiles: dev
   datasource:
-    url: @database.connection.url@&amp;currentSchema=core
+    url: @database.connection.core.url@
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
