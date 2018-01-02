@@ -1,6 +1,5 @@
 package org.openutilities.rm.am.controller.unit;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -36,7 +35,7 @@ public class ResourceControllerTest
 
         // Finds and return the resource
         this.webTestClient.get()
-                .uri(String.format("/resource/%s", code))
+                .uri(String.format("/resources/%s", code))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Resource.class)
@@ -47,7 +46,7 @@ public class ResourceControllerTest
 
         // Doesn't find the resource and return an empty one
         this.webTestClient.get()
-                .uri(String.format("/resource/%s","up-2"))
+                .uri(String.format("/resources/%s","up-2"))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Resource.class)

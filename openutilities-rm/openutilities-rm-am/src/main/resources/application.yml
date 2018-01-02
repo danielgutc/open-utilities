@@ -11,7 +11,7 @@ spring:
 spring:
   profiles: dev
   datasource:
-    url: @database.connection.url@&currentSchema=rm
+    url: @database.connection.rm.url@
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:

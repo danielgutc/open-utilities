@@ -25,7 +25,10 @@ public class UsagePointService
         if (up == null)
         {
             up = usagePointRepository.findByCode(code);
-            cacheService.addObjectToCache(CACHE_NAME, up.getCode(), up);
+            if (up != null)
+            {
+                cacheService.addObjectToCache(CACHE_NAME, up.getCode(), up);
+            }
         }
 
         return up;

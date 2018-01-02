@@ -12,7 +12,10 @@ public class CacheService
 
     public void addObjectToCache(String cacheName, Object key, Object value)
     {
-        hazelcastInstance.getMap(cacheName).put(key, value);
+        if (key != null)
+        {
+            hazelcastInstance.getMap(cacheName).put(key, value);
+        }
     }
 
     public <T> T getObjectFromCache(String cacheName, Object key)

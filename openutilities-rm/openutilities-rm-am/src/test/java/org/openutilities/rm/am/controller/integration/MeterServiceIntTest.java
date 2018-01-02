@@ -3,7 +3,6 @@ package org.openutilities.rm.am.controller.integration;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openutilities.core.domain.Meter;
-import org.openutilities.core.domain.UsagePoint;
 import org.openutilities.rm.am.service.MeterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

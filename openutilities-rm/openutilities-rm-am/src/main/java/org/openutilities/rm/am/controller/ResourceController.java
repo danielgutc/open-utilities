@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class ResourceController
 {
@@ -24,7 +26,7 @@ public class ResourceController
      * @param code is the resource unique code
      * @return the resource
      */
-    @GetMapping(value = "/resource/{code}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/resources/{code}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public Resource getResourceByCode(@PathVariable String code)
@@ -32,5 +34,17 @@ public class ResourceController
         logger.debug("Requested resource code '%s'", code);
 
         return resourceService.getResource(code);
+    }
+
+    /**
+     * Return all resources
+     * @return
+     */
+    @GetMapping(value = "/resources", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public List<Resource> getResources()
+    {
+        return resourceService.getResources();
     }
 }
