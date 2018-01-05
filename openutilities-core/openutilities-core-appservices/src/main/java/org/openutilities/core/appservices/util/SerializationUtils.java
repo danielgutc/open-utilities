@@ -5,10 +5,16 @@ import org.openutilities.core.appservices.exception.AppServicesException;
 import java.io.*;
 
 /**
- * Serialization utils
+ * Serialization utils.
  */
 public class SerializationUtils
 {
+    /**
+     * Serialize object into a byte array.
+     *
+     * @param o the object to serialize
+     * @return the byte array
+     */
     public static byte[] toByteArray(Object o)
     {
         try (ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -24,6 +30,13 @@ public class SerializationUtils
         }
     }
 
+    /**
+     * Deserializes a byte array into an object.
+     *
+     * @param bytes the byte array
+     * @param <T> the type to cast the object resulting of the deserialization
+     * @return the casted object
+     */
     public static <T> T fromByteArray(byte[] bytes)
     {
         try (ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
