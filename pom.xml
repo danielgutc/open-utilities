@@ -23,7 +23,7 @@
         <docker.plugin.version>0.4.13</docker.plugin.version>
         <docker.maven.plugin.version>0.4.11</docker.maven.plugin.version>
         <postgresql.version>42.1.4</postgresql.version>
-        <docker.image.prefix>192.168.0.143:10001</docker.image.prefix>
+        <docker.image.prefix>dangutc.ddns.net:5000</docker.image.prefix>
     </properties>
 
     <modules>
