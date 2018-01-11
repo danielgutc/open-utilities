@@ -9,7 +9,7 @@ spring:
     active: @profile.id@
 ---
 spring:
-  profiles: dev
+  profiles: dev, cloud
   datasource:
     url: @database.connection.rm.url@
     driver-class-name: org.postgresql.Driver
