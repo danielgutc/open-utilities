@@ -9,7 +9,7 @@ spring:
     active: @profile.id@
 ---
 spring:
-  profiles: dev, cloud
+  profiles: cloud
   datasource:
     url: @database.connection.rm.url@
     driver-class-name: org.postgresql.Driver
@@ -19,6 +19,19 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+---
+spring:
+  profiles: dev
+  datasource:
+    url: @database.connection.rm.url@
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
 ---
 spring:
   profiles: local
