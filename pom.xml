@@ -159,11 +159,11 @@
             <id>cloud</id>
             <properties>
                 <profile.id>cloud</profile.id>
-                <hazelcast.hostname>192.168.247.100</hazelcast.hostname>
+                <hazelcast.hostname>192.168.65.121</hazelcast.hostname>
                 <spark.cassandra.connection.host>api.cassandra.marathon.l4lb.thisdcos.directory</spark.cassandra.connection.host>
                 <spark.cassandra.connection.port>80</spark.cassandra.connection.port>
-                <database.connection.rm.url>jdbc:postgresql://postgresql.marathon.l4lb.thisdcos.directory:5432/postgres?user=postgres&amp;currentSchema=rm</database.connection.rm.url>
-                <database.connection.core.url>jdbc:postgresql://postgresql.marathon.l4lb.thisdcos.directory:5432/postgres?user=postgres&amp;currentSchema=core</database.connection.core.url>
+                <database.connection.rm.url>jdbc:postgresql://postgresql.marathon.l4lb.thisdcos.directory:5432/postgres?user=admin&amp;password=password&amp;currentSchema=rm</database.connection.rm.url>
+                <database.connection.core.url>jdbc:postgresql://postgresql.marathon.l4lb.thisdcos.directory:5432/postgres?user=admin&amp;password=password&amp;currentSchema=core</database.connection.core.url>
                 <kafka.hostname>api.confluent-kafka.marathon.l4lb.thisdcos.directory</kafka.hostname>
                 <kafka.port>80</kafka.port>
                 <kafka.bootstrap.servers>${kafka.hostname}:${kafka.port}</kafka.bootstrap.servers>
