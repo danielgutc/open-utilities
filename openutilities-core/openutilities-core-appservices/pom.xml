@@ -124,6 +124,21 @@
     <!-- Set persistence technology accor4ding to the maven profile -->
     <profiles>
         <profile>
+            <id>cloud</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.postgresql</groupId>
+                    <artifactId>postgresql</artifactId>
+                    <version>${postgresql.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>com.h2database</groupId>
+                    <artifactId>h2</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
             <id>dev</id>
             <dependencies>
                 <dependency>
@@ -144,7 +159,6 @@
                 <dependency>
                     <groupId>com.h2database</groupId>
                     <artifactId>h2</artifactId>
-                    <scope>runtime</scope>
                 </dependency>
             </dependencies>
         </profile>
