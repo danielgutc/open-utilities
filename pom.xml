@@ -155,6 +155,25 @@
                 <h2.console.enabled>true</h2.console.enabled>
             </properties>
         </profile>
+        <profile>
+            <id>cloud</id>
+            <properties>
+                <profile.id>cloud</profile.id>
+                <hazelcast.hostname>192.168.247.100</hazelcast.hostname>
+                <spark.cassandra.connection.host>api.cassandra.marathon.l4lb.thisdcos.directory</spark.cassandra.connection.host>
+                <spark.cassandra.connection.port>80</spark.cassandra.connection.port>
+                <database.connection.rm.url>jdbc:postgresql://postgresql.marathon.l4lb.thisdcos.directory:5432/postgres?user=postgres&amp;currentSchema=rm</database.connection.rm.url>
+                <database.connection.core.url>jdbc:postgresql://postgresql.marathon.l4lb.thisdcos.directory:5432/postgres?user=postgres&amp;currentSchema=core</database.connection.core.url>
+                <kafka.hostname>api.confluent-kafka.marathon.l4lb.thisdcos.directory</kafka.hostname>
+                <kafka.port>80</kafka.port>
+                <kafka.bootstrap.servers>${kafka.hostname}:${kafka.port}</kafka.bootstrap.servers>
+                <components.rm.am.port>9001</components.rm.am.port>
+                <components.core.appservices.port>9003</components.core.appservices.port>
+                <components.integration.collection.csv.port>9002</components.integration.collection.csv.port>
+                <components.integration.collection.csv.hotfolder>/tmp/readings/input</components.integration.collection.csv.hotfolder>
+                <h2.console.enabled>false</h2.console.enabled>
+            </properties>
+        </profile>
     </profiles>
 
     <repositories>
