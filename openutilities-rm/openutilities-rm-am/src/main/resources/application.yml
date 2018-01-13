@@ -1,6 +1,8 @@
 server:
   port: @components.rm.am.port@
-
+endpoints:
+  health:
+    enabled: true
 application:
   properties:
     debug: true

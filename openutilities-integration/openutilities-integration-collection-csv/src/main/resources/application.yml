@@ -16,3 +16,6 @@ spring:
                     zkNodes: @kafka.hostname@
 server:
     port: @components.integration.collection.csv.port@
+endpoints:
+  health:
+    enabled: true

@@ -1,9 +1,11 @@
 server:
   port: @components.core.appservices.port@
-
 application:
   properties:
     debug: true
+endpoints:
+  health:
+    enabled: true
 spring:
   kafka:
     bootstrap-servers: @kafka.bootstrap.servers@
