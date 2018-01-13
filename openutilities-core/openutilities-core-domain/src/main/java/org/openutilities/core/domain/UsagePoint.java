@@ -1,5 +1,7 @@
 package org.openutilities.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.openutilities.core.util.RelationsUtils;
 
 import java.io.Serializable;
@@ -11,7 +13,9 @@ import java.util.List;
  */
 public class UsagePoint extends Resource implements Serializable, Verifiable
 {
+    @JsonManagedReference
     private List<Relation> meters = new ArrayList<>();
+    @JsonManagedReference
     private List<Relation> channels = new ArrayList<>();
 
     public UsagePoint()

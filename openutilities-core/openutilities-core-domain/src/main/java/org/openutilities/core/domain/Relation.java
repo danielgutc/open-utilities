@@ -1,5 +1,9 @@
 package org.openutilities.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,7 +18,9 @@ public class Relation implements Serializable
     private Long fromResourceId;
     private Long toResourceId;
     private Long typeId;
+    @JsonBackReference
     private Resource fromResource;
+    @JsonManagedReference
     private Resource toResource;
     private Date fromDt;
     private Date toDt;

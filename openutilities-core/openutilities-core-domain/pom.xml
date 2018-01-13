@@ -20,9 +20,19 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mockito.all.version>2.0.2-beta</mockito.all.version>
         <junit.version>4.11</junit.version>
+        <jackson.annotations.version>2.6.5</jackson.annotations.version>
     </properties>
 
     <dependencies>
+
+        <!-- Add jackson annotations to prevent recursive references.
+             TODO handle json recursive references this problem during object (de)serialization to decouple domain model and serialization logic instead with annotations -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.annotations.version}</version>
+        </dependency>
+
         <!-- Testing -->
         <dependency>
             <groupId>org.mockito</groupId>

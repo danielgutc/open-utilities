@@ -1,5 +1,8 @@
 package org.openutilities.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.openutilities.core.exceptions.DomainRuleException;
 import org.openutilities.core.util.RelationsUtils;
 
@@ -14,7 +17,9 @@ import java.util.stream.Collectors;
 public class Meter extends Resource implements Serializable, Verifiable
 {
     private String serialNumber;
+    @JsonBackReference
     private List<Relation> usagePoints = new ArrayList<>();
+    @JsonManagedReference
     private List<Relation> channels = new ArrayList<>();
 
     public Meter()
