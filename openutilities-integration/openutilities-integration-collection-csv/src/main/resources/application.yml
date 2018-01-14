@@ -1,5 +1,5 @@
 hotfolder:
-  path: @components.integration.collection.csv.hotfolder@
+    path: @components.integration.collection.csv.hotfolder@
 spring:
     application:
         name: ou-integration-collection-csv
@@ -16,6 +16,3 @@ spring:
                     zkNodes: @kafka.hostname@
 server:
     port: @components.integration.collection.csv.port@
-endpoints:
-  health:
-    enabled: true

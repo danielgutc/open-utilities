@@ -25,6 +25,8 @@ import java.nio.file.*;
 @Component
 public class FileCollector
 {
+    public static final String INPUT = "\\input\\";
+    public static final String OUTPUT = "\\output\\";
     private static Logger logger = LoggerFactory.getLogger(FileCollector.class);
 
     @Autowired
@@ -47,11 +49,10 @@ public class FileCollector
      */
     public void watch() throws IOException, InterruptedException
     {
-        Path hotFolderPath = Paths.get(this.path);
-
-        try (WatchService hotFolderWs = hotFolderPath.getFileSystem().newWatchService())
+        Path hotFolderPathInput = Paths.get(this.path + INPUT);
+        try (WatchService hotFolderWs = hotFolderPathInput.getFileSystem().newWatchService())
         {
-            hotFolderPath.register(hotFolderWs, StandardWatchEventKinds.ENTRY_CREATE);
+            hotFolderPathInput.register(hotFolderWs, StandardWatchEventKinds.ENTRY_CREATE);
 
             while (true)
             {
@@ -65,8 +66,14 @@ public class FileCollector
                         if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE)
                         {
                             logger.info("New file detected '%s'", event.context().toString());
+                            Path inputFile = Paths.get(this.path + INPUT + event.context().toString());
+                            Path outputFile = Paths.get(this.path + OUTPUT + event.context().toString());
 
-                            sendMessage(new String(Files.readAllBytes(Paths.get(this.path + "\\" + event.context().toString()))));
+                            logger.info("Sending file '%s' to input queue", event.context().toString());
+                            sendMessage(new String(Files.readAllBytes(inputFile)));
+
+                            logger.info("Moving file '%s' to output folder", event.context().toString());
+                            Files.move(inputFile, outputFile);
 
                             logger.info("File '%s' has been collected", event.context().toString());
                         }

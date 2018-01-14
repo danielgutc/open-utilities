@@ -56,6 +56,13 @@
                     <include>**/*</include>
                 </includes>
             </resource>
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
         </resources>
 
         <plugins>
@@ -90,8 +97,8 @@
             <!-- Import dependency management for Spring Cloud -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Finchley.M2</version>
+                <artifactId>spring-cloud-dependencies</artifactId><!-- TODO narrow dependencies to spring cloud stream -->
+                <version>Finchley.M5</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
