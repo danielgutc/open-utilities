@@ -6,7 +6,7 @@
     <artifactId>openutilities-integration</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>openutilities-integration-collection-csv</module>
+        <module>openutilities-int-collect-csv</module>
     </modules>
     <packaging>pom</packaging>
 

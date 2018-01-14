@@ -9,9 +9,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.openutilities.integration.collection.csv</groupId>
-    <artifactId>openutilities-int-coll-csv</artifactId>
+    <artifactId>openutilities-int-collect-csv</artifactId>
     <packaging>jar</packaging>
 
-    <name>openutilities-int-coll-csv</name>
+    <name>openutilities-int-collect-csv</name>
     <url>https://github.com/danielgutc/open-utilities</url>
 </project>
