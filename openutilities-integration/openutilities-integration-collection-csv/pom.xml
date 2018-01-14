@@ -4,13 +4,14 @@
         <artifactId>openutilities-integration</artifactId>
         <groupId>org.openutilities.integration</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.openutilities.integration.collection.csv</groupId>
-    <artifactId>openutilities-integration-collection-csv</artifactId>
+    <artifactId>openutilities-int-coll-csv</artifactId>
     <packaging>jar</packaging>
 
-    <name>openutilities-integration-collection-csv</name>
+    <name>openutilities-int-coll-csv</name>
     <url>https://github.com/danielgutc/open-utilities</url>
 </project>
