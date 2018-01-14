@@ -4,6 +4,9 @@ import com.hazelcast.core.HazelcastInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Cache service connects with the global cache.
+ */
 @Service
 public class CacheService
 {
