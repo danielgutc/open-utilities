@@ -15,5 +15,6 @@ spring:
                     brokers: @kafka.hostname@
                     zkNodes: @kafka.hostname@
                     defaultBrokerPort: 1026
+                    defaultZkPort: 2375
 server:
     port: @components.integration.collection.csv.port@
