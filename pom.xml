@@ -110,7 +110,7 @@
                 <database.connection.rm.url></database.connection.rm.url>
                 <database.connection.core.url></database.connection.core.url>
                 <kafka.hostname>spark-vm-local</kafka.hostname>
-                <kafka.port>9092</kafka.port>
+                <kafka.port>2181</kafka.port>
                 <kafka.bootstrap.servers>${kafka.hostname}:${kafka.port}</kafka.bootstrap.servers>
                 <components.rm.am.port>9001</components.rm.am.port>
                 <components.core.appservices.port>9003</components.core.appservices.port>
@@ -129,7 +129,7 @@
                 <database.connection.rm.url>jdbc:postgresql://spark-vm-local:5432/postgres?user=postgres&amp;currentSchema=rm</database.connection.rm.url>
                 <database.connection.core.url>jdbc:postgresql://spark-vm-local:5432/postgres?user=postgres&amp;currentSchema=core</database.connection.core.url>
                 <kafka.hostname>spark-vm</kafka.hostname>
-                <kafka.port>9092</kafka.port>
+                <kafka.port>2181</kafka.port>
                 <kafka.bootstrap.servers>${kafka.hostname}:${kafka.port}</kafka.bootstrap.servers>
                 <components.rm.am.port>9001</components.rm.am.port>
                 <components.core.appservices.port>9003</components.core.appservices.port>
