@@ -12,7 +12,7 @@ spring:
                         headerMode: raw
             kafka:
                 binder:
-                    brokers: @kafka.bootstrap.servers@
-                    zkNodes: @kafka.bootstrap.servers@
+                    brokers: 192.168.65.111:1026
+                    zkNodes: 192.168.65.111:2375
 server:
     port: @components.integration.collection.csv.port@
