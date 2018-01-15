@@ -20,13 +20,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <properties>
-        <docker.image.prefix></docker.image.prefix>
-        <lombok.maven.plugin.version>1.16.18.1</lombok.maven.plugin.version>
-        <docker.plugin.version>0.4.13</docker.plugin.version>
-        <docker.maven.plugin.version>0.4.11</docker.maven.plugin.version>
-
-    </properties>
+    <properties/>
 
     <dependencies>
         <!-- Spring Cloud stream dependencies -->
