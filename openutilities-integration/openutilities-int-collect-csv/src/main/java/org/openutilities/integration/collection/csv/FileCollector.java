@@ -6,11 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.messaging.MessageHeaders;
-import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -21,19 +18,21 @@ import java.nio.file.*;
  * Folder watcher class reads and stores CSV files in Kafka topics.
  */
 @SpringBootApplication
-@EnableBinding(Source.class)
 @Component
 public class FileCollector
 {
-    public static final String INPUT = "\\input\\";
-    public static final String OUTPUT = "\\output\\";
     private static Logger logger = LoggerFactory.getLogger(FileCollector.class);
+    private static final String INPUT = "\\input\\";
+    private static final String OUTPUT = "\\output\\";
 
     @Autowired
-    private Source channels;
+    private KafkaTemplate<String, Object> kafkaTemplate;
 
-    @Value("${hotfolder.path}")
+    @Value("${application.hotfolder.path}")
     private String path;
+
+    @Value("${application.kafka.topic}")
+    private String topic;
 
     public static void main(String[] args) throws IOException, InterruptedException
     {
@@ -95,6 +94,6 @@ public class FileCollector
      */
     private void sendMessage(String body)
     {
-        this.channels.output().send(MessageBuilder.createMessage(body.getBytes(StandardCharsets.UTF_8), new MessageHeaders(null)));
+        this.kafkaTemplate.send(this.topic, body.getBytes(StandardCharsets.UTF_8));
     }
 }
