@@ -1,3 +1,6 @@
+endpoints:
+  health:
+    enabled: true
 application:
     hotfolder:
         path: @components.integration.collection.csv.hotfolder@
