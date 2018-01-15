@@ -148,8 +148,8 @@
                 <database.connection.rm.url>jdbc:postgresql://postgresql.marathon.l4lb.thisdcos.directory:5432/defaultdb?user=admin&amp;password=password&amp;currentSchema=rm</database.connection.rm.url>
                 <database.connection.core.url>jdbc:postgresql://postgresql.marathon.l4lb.thisdcos.directory:5432/defaultdb?user=admin&amp;password=password&amp;currentSchema=core</database.connection.core.url>
                 <kafka.hostname>192.168.65.111</kafka.hostname>
-                <kafka.port>2375</kafka.port>
-                <kafka.bootstrap.servers>192.168.65.111:2375</kafka.bootstrap.servers>
+                <kafka.port>1026</kafka.port>
+                <kafka.bootstrap.servers>${kafka.hostname}:${kafka.port}</kafka.bootstrap.servers>
                 <components.rm.am.port>9001</components.rm.am.port>
                 <components.core.appservices.port>9003</components.core.appservices.port>
                 <components.integration.collection.csv.port>9002</components.integration.collection.csv.port>
