@@ -3,8 +3,6 @@ hotfolder:
 spring:
     application:
         name: ou-integration-collection-csv
-    kafka:
-      bootstrap-servers: 192.168.65.111:1026
     cloud:
         stream:
             bindings:
@@ -13,6 +11,9 @@ spring:
                     producer:
                         headerMode: raw
             kafka:
-                bootstrap-servers: 192.168.65.111:1026
+                binder:
+                    brokers: @kafka.hostname@
+                    zkNodes: @kafka.hostname@
+                    defaultBrokerPort: 1026
 server:
     port: @components.integration.collection.csv.port@
