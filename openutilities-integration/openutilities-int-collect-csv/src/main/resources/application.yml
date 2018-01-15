@@ -13,6 +13,6 @@ spring:
             kafka:
                 binder:
                     brokers: 192.168.65.111:1026
-                    zkNodes: 192.168.65.111:2375
+                    zkNodes: 192.168.65.111:1026
 server:
     port: @components.integration.collection.csv.port@
