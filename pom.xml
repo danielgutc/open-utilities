@@ -153,7 +153,7 @@
                 <components.rm.am.port>9001</components.rm.am.port>
                 <components.core.appservices.port>9003</components.core.appservices.port>
                 <components.integration.collection.csv.port>9002</components.integration.collection.csv.port>
-                <components.integration.collection.csv.hotfolder>/tmp/readings</components.integration.collection.csv.hotfolder>
+                <components.integration.collection.csv.hotfolder>/ou/readings</components.integration.collection.csv.hotfolder>
                 <h2.console.enabled>false</h2.console.enabled>
             </properties>
         </profile>
