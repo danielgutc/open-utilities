@@ -22,8 +22,8 @@ import java.nio.file.*;
 public class FileCollector
 {
     private static Logger logger = LoggerFactory.getLogger(FileCollector.class);
-    private static final String INPUT = "\\input\\";
-    private static final String OUTPUT = "\\output\\";
+    private static final String INPUT = "/input/";
+    private static final String OUTPUT = "/output/";
 
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
@@ -52,6 +52,7 @@ public class FileCollector
         try (WatchService hotFolderWs = hotFolderPathInput.getFileSystem().newWatchService())
         {
             hotFolderPathInput.register(hotFolderWs, StandardWatchEventKinds.ENTRY_CREATE);
+            logger.info("Watching folder " + hotFolderPathInput.toString());
 
             while (true)
             {
@@ -64,17 +65,17 @@ public class FileCollector
                     {
                         if (event.kind() == StandardWatchEventKinds.ENTRY_CREATE)
                         {
-                            logger.info("New file detected '%s'", event.context().toString());
+                            logger.info("New file detected {}", event.context().toString());
                             Path inputFile = Paths.get(this.path + INPUT + event.context().toString());
                             Path outputFile = Paths.get(this.path + OUTPUT + event.context().toString());
 
-                            logger.info("Sending file '%s' to input queue", event.context().toString());
+                            logger.info("Sending file {} to input queue", event.context().toString());
                             sendMessage(new String(Files.readAllBytes(inputFile)));
 
-                            logger.info("Moving file '%s' to output folder", event.context().toString());
+                            logger.info("Moving file {} to output folder", event.context().toString());
                             Files.move(inputFile, outputFile);
 
-                            logger.info("File '%s' has been collected", event.context().toString());
+                            logger.info("File {} has been collected", event.context().toString());
                         }
                     }
                 }
