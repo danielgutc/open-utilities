@@ -1,11 +1,11 @@
 endpoints:
-  health:
-    enabled: true
+    health:
+        enabled: true
 application:
     hotfolder:
         path: @components.integration.collection.csv.hotfolder@
     kafka:
-      topic: mdm-readings-csv-input
+      topic: ou-readings-input
 spring:
     kafka:
         bootstrap-servers: @kafka.bootstrap.servers@
