@@ -9,6 +9,7 @@ application:
 spring:
     kafka:
         bootstrap-servers: @kafka.bootstrap.servers@
+        defaultZkPort: 2375
     application:
         name: ou-integration-collection-csv
 server:
