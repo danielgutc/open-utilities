@@ -1,4 +1,4 @@
-package org.openutilities.integration.collection.csv;
+package org.openutilities.integration.collection;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 
 /**
@@ -19,9 +18,9 @@ import java.nio.file.*;
  */
 @SpringBootApplication
 @Component
-public class FileCollector
+public class CsvFileCollector
 {
-    private static Logger logger = LoggerFactory.getLogger(FileCollector.class);
+    private static Logger logger = LoggerFactory.getLogger(CsvFileCollector.class);
     private static final String INPUT = "/input/";
     private static final String OUTPUT = "/output/";
 
@@ -36,8 +35,8 @@ public class FileCollector
 
     public static void main(String[] args) throws IOException, InterruptedException
     {
-        ConfigurableApplicationContext context  = SpringApplication.run(FileCollector.class, args);
-        FileCollector fc = context.getBean(FileCollector.class);
+        ConfigurableApplicationContext context  = SpringApplication.run(CsvFileCollector.class, args);
+        CsvFileCollector fc = context.getBean(CsvFileCollector.class);
         fc.watch();
     }
 
@@ -70,7 +69,7 @@ public class FileCollector
                             Path outputFile = Paths.get(this.path + OUTPUT + event.context().toString());
 
                             logger.info("Sending file {} to input queue", event.context().toString());
-                            sendMessage(new String(Files.readAllBytes(inputFile)));
+                            sendMessage(Files.readAllBytes(inputFile));
 
                             logger.info("Moving file {} to output folder", event.context().toString());
                             Files.move(inputFile, outputFile);
@@ -93,8 +92,8 @@ public class FileCollector
      * Send message to Kafka.
      * @param body
      */
-    private void sendMessage(String body)
+    private void sendMessage(byte[] body)
     {
-        this.kafkaTemplate.send(this.topic, body.getBytes(StandardCharsets.UTF_8));
+        this.kafkaTemplate.send(this.topic, body);
     }
 }

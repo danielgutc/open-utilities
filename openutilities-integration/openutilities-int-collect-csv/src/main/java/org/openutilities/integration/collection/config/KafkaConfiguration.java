@@ -36,6 +36,7 @@ public class KafkaConfiguration
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServer);
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, ByteArraySerializer.class);
+        //props.put("zk.connect", "192.168.65.131:2375");
         // See https://kafka.apache.org/documentation/#producerconfigs for more properties
         return props;
     }
@@ -44,22 +45,5 @@ public class KafkaConfiguration
     public KafkaTemplate<String, Object> kafkaTemplate()
     {
         return new KafkaTemplate<String, Object>(producerFactory());
-    }
-
-    @Bean
-    public Map<String, Object> consumerConfigs()
-    {
-        Map<String, Object> props = new HashMap<>();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServer);
-        props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, ByteArrayDeserializer.class);
-
-        return props;
-    }
-
-    @Bean
-    public ConsumerFactory<Object, Object> consumerFactory()
-    {
-        return new DefaultKafkaConsumerFactory<Object, Object>(consumerConfigs());
     }
 }
