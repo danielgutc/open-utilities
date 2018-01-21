@@ -20,7 +20,7 @@ import java.util.concurrent.Executors;
 public class SimpleWorkflowEngine extends WorkflowEngine
 {
     private static Logger logger = LoggerFactory.getLogger(SimpleWorkflowEngine.class);
-    public static final String APPSERVICES_EXECUTIONS_TOPIC = "appservices_executions";
+    public static final String APPSERVICES_EXECUTIONS_TOPIC = "appservices-swe-executions";
 
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;

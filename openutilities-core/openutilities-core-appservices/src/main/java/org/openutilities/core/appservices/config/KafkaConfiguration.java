@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Configuration class for Kafka templates
+ * Configuration class for Kafka templates.
  */
 @Configuration
 public class KafkaConfiguration
