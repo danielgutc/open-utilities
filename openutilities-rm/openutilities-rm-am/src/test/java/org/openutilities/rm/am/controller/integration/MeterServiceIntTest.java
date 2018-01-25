@@ -18,7 +18,7 @@ public class MeterServiceIntTest
     @Test
     public void getMeter()
     {
-        Meter meter = meterService.getMeter("mtr-1");
+        Meter meter = meterService.getMeter("mtr-1", null);
         //UsagePoint up = (UsagePoint) meter.getUsagePoints().get(0).getFromResource();
     }
 }

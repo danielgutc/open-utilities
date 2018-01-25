@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UsagePointService
 {
-    private static final String CACHE_NAME = "usagePoints";
-
     @Autowired
     private UsagePointRepository usagePointRepository;
 
@@ -21,13 +19,13 @@ public class UsagePointService
 
     public UsagePoint getUsagePoint(String code)
     {
-        UsagePoint up = cacheService.getObjectFromCache(CACHE_NAME, code);
+        UsagePoint up = cacheService.getObjectFromCache(CacheService.UP_CACHE, code);
         if (up == null)
         {
             up = usagePointRepository.findByCode(code);
             if (up != null)
             {
-                cacheService.addObjectToCache(CACHE_NAME, up.getCode(), up);
+                cacheService.addObjectToCache(CacheService.UP_CACHE, up.getCode(), up);
             }
         }
 
@@ -37,7 +35,7 @@ public class UsagePointService
     public UsagePoint saveUsagePoint(UsagePoint up)
     {
         UsagePoint upDb = usagePointRepository.save(up);
-        cacheService.addObjectToCache(CACHE_NAME, up.getCode(), up);
+        cacheService.addObjectToCache(CacheService.UP_CACHE, up.getCode(), up);
 
         return upDb;
     }
