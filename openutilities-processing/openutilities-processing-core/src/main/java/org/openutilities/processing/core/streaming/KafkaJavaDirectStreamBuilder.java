@@ -21,13 +21,14 @@ import java.util.Map;
  */
 public class KafkaJavaDirectStreamBuilder
 {
-    public static <T> JavaInputDStream<ConsumerRecord<String, T>> createDirectStream()
+    public static <T> JavaInputDStream<ConsumerRecord<String, T>> createDirectStream(SparkConf conf)
     {
-        SparkConf conf = new SparkConf()
+/*        SparkConf conf = new SparkConf()
                 .setAppName("mdm-readings-syntactic-validation")
                 .set("spark.cassandra.connection.host", Configuration.getPropertyAsString("spark.cassandra.connection.host"))
                 .set("spark.cassandra.connection.port", Configuration.getPropertyAsString("spark.cassandra.connection.port"))
-                .setMaster("local[*]");
+                //.setMaster("local[*]")
+                ;*/
 
         JavaStreamingContext jsc = new JavaStreamingContext(conf, new Duration(Configuration.getPropertyAsLong("spark.streaming.batch.duration")));
 

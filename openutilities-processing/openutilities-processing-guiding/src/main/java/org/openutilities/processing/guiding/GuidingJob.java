@@ -3,6 +3,7 @@ package org.openutilities.processing.guiding;
 import com.datastax.spark.connector.japi.CassandraStreamingJavaUtil;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.function.FlatMapFunction;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaInputDStream;
@@ -11,6 +12,8 @@ import org.openutilities.core.domain.Meter;
 import org.openutilities.core.domain.Reading;
 import org.openutilities.core.domain.builder.ReadingBuilder;
 import org.openutilities.processing.core.cache.CacheService;
+import org.openutilities.processing.core.config.Configuration;
+import org.openutilities.processing.core.session.SparkSessionFactory;
 import org.openutilities.processing.core.streaming.KafkaJavaDirectStreamBuilder;
 
 import static com.datastax.spark.connector.japi.CassandraJavaUtil.*;
@@ -49,7 +52,13 @@ public class GuidingJob implements Serializable
     private void startGuiding() throws Exception
     {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy'T'HH:mm:ss'Z'");
-        JavaInputDStream<ConsumerRecord<String, String>> stream = KafkaJavaDirectStreamBuilder.createDirectStream();
+
+        SparkConf conf = new SparkConf()
+                .setAppName(Configuration.getPropertyAsString("application.name"))
+                .set("spark.cassandra.connection.host", Configuration.getPropertyAsString("spark.cassandra.connection.host"))
+                .set("spark.cassandra.connection.port", Configuration.getPropertyAsString("spark.cassandra.connection.port"));
+
+        JavaInputDStream<ConsumerRecord<String, String>> stream = KafkaJavaDirectStreamBuilder.createDirectStream(conf);
 
         JavaDStream<Reading> readingJavaDStream =
                 stream.map(r -> r.value())
