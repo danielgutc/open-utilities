@@ -143,7 +143,7 @@
             <properties>
                 <profile.id>cloud</profile.id>
                 <hazelcast.hostname>192.168.65.121</hazelcast.hostname>
-                <spark.cassandra.connection.host>192.168.65.121</spark.cassandra.connection.host>
+                <spark.cassandra.connection.host>192.168.65.111</spark.cassandra.connection.host>
                 <spark.cassandra.connection.port>9042</spark.cassandra.connection.port>
                 <database.connection.rm.url>jdbc:postgresql://postgresql.marathon.l4lb.thisdcos.directory:5432/defaultdb?user=admin&amp;password=password&amp;currentSchema=rm</database.connection.rm.url>
                 <database.connection.core.url>jdbc:postgresql://postgresql.marathon.l4lb.thisdcos.directory:5432/defaultdb?user=admin&amp;password=password&amp;currentSchema=core</database.connection.core.url>
