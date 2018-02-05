@@ -23,18 +23,12 @@ public class KafkaJavaDirectStreamBuilder
 {
     public static <T> JavaInputDStream<ConsumerRecord<String, T>> createDirectStream(SparkConf conf)
     {
-/*        SparkConf conf = new SparkConf()
-                .setAppName("mdm-readings-syntactic-validation")
-                .set("spark.cassandra.connection.host", Configuration.getPropertyAsString("spark.cassandra.connection.host"))
-                .set("spark.cassandra.connection.port", Configuration.getPropertyAsString("spark.cassandra.connection.port"))
-                //.setMaster("local[*]")
-                ;*/
-
         JavaStreamingContext jsc = new JavaStreamingContext(conf, new Duration(Configuration.getPropertyAsLong("spark.streaming.batch.duration")));
 
         // Connect to Kafka
         Map<String, Object> kafkaParams = new HashMap<>();
         kafkaParams.put("bootstrap.servers", Configuration.getPropertyAsString("kafka.bootstrap.servers"));
+        kafkaParams.put("zookeeper.connect", "192.168.65.90:2181");
         kafkaParams.put("key.deserializer", StringDeserializer.class);
         kafkaParams.put("value.deserializer", StringDeserializer.class);
         kafkaParams.put("group.id", "group_1");
