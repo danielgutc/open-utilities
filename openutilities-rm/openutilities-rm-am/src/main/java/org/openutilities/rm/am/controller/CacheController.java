@@ -13,8 +13,6 @@ public class CacheController
     private CacheLoaderService cacheLoaderService;
 
     @GetMapping(value = "/cache") // TODO easier to invoke
-    //@PutMapping(value = "/cache")
-    @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public void loadCaches()
     {
