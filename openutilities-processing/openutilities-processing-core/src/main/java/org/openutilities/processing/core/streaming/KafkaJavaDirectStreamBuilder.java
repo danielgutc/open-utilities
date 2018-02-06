@@ -28,7 +28,6 @@ public class KafkaJavaDirectStreamBuilder
         // Connect to Kafka
         Map<String, Object> kafkaParams = new HashMap<>();
         kafkaParams.put("bootstrap.servers", Configuration.getPropertyAsString("kafka.bootstrap.servers"));
-        kafkaParams.put("zookeeper.consumer.connection", "master.mesos:2181/dcos-service-kafka");
         kafkaParams.put("key.deserializer", StringDeserializer.class);
         kafkaParams.put("value.deserializer", StringDeserializer.class);
         kafkaParams.put("group.id", "group_1");
