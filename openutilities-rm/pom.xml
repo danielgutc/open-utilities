@@ -53,12 +53,12 @@
         -->
 
         <!-- TODO Add dependencies for cloud patterns not covered by the container orchestration:
-            Distributed/versioned configuration
-            Service registration and discovery
+            Distributed/versioned configuration         TODO
+            Service registration and discovery          Covered by container orchestration
             Routing
             Service-to-service calls
-            Load balancing (covered by marathon?)
-            Circuit Breakers (covered by marathon?)
+            Load balancing (covered by marathon?)       Covered by container orchestration
+            Circuit Breakers (covered by marathon?)     Covered by container orchestration
             Leadership election and cluster state
             Distributed messaging
             https://dzone.com/articles/deploying-microservices-spring-cloud-vs-kubernetes
