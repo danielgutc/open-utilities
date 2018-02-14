@@ -1,6 +1,8 @@
 package org.openutilities.rm.am.service;
 
 import com.hazelcast.core.HazelcastInstance;
+import org.hibernate.Hibernate;
+import org.openutilities.core.domain.Cacheable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +30,7 @@ public class CacheService
     {
         if (key != null)
         {
-            hazelcastInstance.getMap(cacheName).put(key, value);
+            hazelcastInstance.getMap(cacheName).put(key, ((Cacheable)value).cacheableClone());
         }
     }
 
