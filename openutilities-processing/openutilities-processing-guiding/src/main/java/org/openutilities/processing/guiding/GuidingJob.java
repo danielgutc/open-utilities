@@ -55,6 +55,7 @@ public class GuidingJob implements Serializable
 
         SparkConf conf = new SparkConf()
                 .setAppName(Configuration.getPropertyAsString("application.name"))
+                .set("spark.dynamicAllocation.enabled", "false")
                 .set("spark.cassandra.connection.host", Configuration.getPropertyAsString("spark.cassandra.connection.host"))
                 .set("spark.cassandra.connection.port", Configuration.getPropertyAsString("spark.cassandra.connection.port"));
 
