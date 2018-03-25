@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+FROM jfisbein/alpine-oracle-jdk9
 VOLUME /tmp
 ADD entrypoint.sh entrypoint.sh
 RUN chmod u+x entrypoint.sh

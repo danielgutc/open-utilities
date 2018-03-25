@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-oraclejdk8:slim
+FROM jfisbein/alpine-oracle-jdk9
 VOLUME /tmp
 ADD openutilities-core-appservices-0.0.1-SNAPSHOT.jar app.jar
 RUN sh -c 'touch /app.jar'

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.openutilities.infrastructure</groupId>
+    <artifactId>openutilities-insfrastructure</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <properties>
+        <docker.plugin.version>0.4.13</docker.plugin.version>
+        <docker.maven.plugin.version>0.4.11</docker.maven.plugin.version>
+        <docker.image.prefix>vhs-registry:5000</docker.image.prefix>
+    </properties>
+
+    <modules>
+        <module>openutilities-infrastructure-docker</module>
+    </modules>
+
+</project>
