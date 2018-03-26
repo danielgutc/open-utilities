@@ -158,7 +158,6 @@
             </properties>
         </profile>
     </profiles>
-
     <repositories>
         <repository>
             <id>spring-snapshots</id>
